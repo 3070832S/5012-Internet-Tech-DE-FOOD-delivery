@@ -8,58 +8,112 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- 你的CSS -->
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Custom CSS -->
     {% load static %}
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navigation bar with gradient and wave -->
+    <nav class="navbar navbar-expand-lg bg-warning sticky-top py-3" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); position: relative;">
         <div class="container">
-            <a class="navbar-brand" href="/">🍔 Food Delivery</a>
+            <a class="navbar-brand text-dark fw-bold" href="/">
+                <i class="bi bi-chef-hat"></i> Food Delivery
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/restaurants/">餐厅</a>
+                        <!-- Restaurant list page -->
+                        <a class="nav-link text-dark" href="/restaurants/">
+                            <i class="bi bi-shop"></i> 餐厅
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/cart/">购物车</a>
+                        <!-- Shopping cart page -->
+                        <a class="nav-link text-dark" href="/cart/">
+                            <i class="bi bi-cart"></i> 购物车
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/orders/">订单</a>
+                        <!-- Orders page -->
+                        <a class="nav-link text-dark" href="/orders/">
+                            <i class="bi bi-box"></i> 订单
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/accounts/login/">登录</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/accounts/register/">注册</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> 账号
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <!-- Login page -->
+                            <li><a class="dropdown-item" href="/accounts/login/">登录</a></li>
+                            <!-- Register page -->
+                            <li><a class="dropdown-item" href="/accounts/register/">注册</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <!-- ❗ 需要组员确认：个人中心的URL -->
+                            <li><a class="dropdown-item" href="/accounts/profile/">个人中心</a></li>
+                            <!-- ❗ 需要组员确认：登出的URL -->
+                            <li><a class="dropdown-item" href="/accounts/logout/">登出</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
+        <!-- Wave effect -->
+        <div class="wave"></div>
     </nav>
 
-    <!-- 主要内容区 -->
+    <!-- Main content area -->
     <main class="container my-4">
         {% block content %}
         {% endblock %}
     </main>
 
-    <!-- 页脚 -->
-    <footer class="bg-light text-center py-3 mt-5">
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4 mt-5">
         <div class="container">
-            <p class="mb-0">© 2026 Food Delivery - Internet Technology Course Project</p>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>About Us</h5>
+                    <p class="text-muted small">Food Delivery - Bringing food to your doorstep</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <!-- Restaurant list page -->
+                        <li><a href="/restaurants/" class="text-decoration-none text-muted">餐厅列表</a></li>
+                        <!-- Orders page -->
+                        <li><a href="/orders/" class="text-decoration-none text-muted">我的订单</a></li>
+                        <!-- Profile page -->
+                        <li><a href="/accounts/profile/" class="text-decoration-none text-muted">个人中心</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contact Us</h5>
+                    <p class="text-muted small">
+                        <i class="bi bi-envelope"></i> support@fooddelivery.com<br>
+                        <i class="bi bi-telephone"></i> 123-456-7890
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <p class="text-muted small mb-0">
+                © 2026 Food Delivery - Internet Technology Course Project
+            </p>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- 你的JS -->
+    <!-- Custom JS -->
     <script src="{% static 'js/base.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>

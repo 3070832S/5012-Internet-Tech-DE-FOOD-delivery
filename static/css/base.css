@@ -1,91 +1,235 @@
-/* 全局样式 */
+/* ===== Global styles ===== */
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
 }
 
 main {
     flex: 1;
 }
 
-/* 导航栏样式 */
+/* ===== Navbar styles ===== */
+.navbar {
+    position: relative;
+    overflow: hidden;
+}
+
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
-    color: #ff6b6b !important;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.9);
-    transition: color 0.3s;
+.navbar .nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-    color: #ff6b6b;
+.navbar .nav-link:hover {
+    color: #000 !important;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 5px;
 }
 
-/* 卡片样式 */
+/* ===== Wave animation (pure CSS) ===== */
+.wave {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.8) 10px,
+        rgba(255, 255, 255, 0.8) 20px
+    );
+    background-size: 28px 28px;
+    animation: waveMove 2s linear infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes waveMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 28px 0;
+    }
+}
+
+/* ===== Card styles ===== */
 .card {
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.2s, box-shadow 0.2s;
     border: none;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border-radius: 12px;
     overflow: hidden;
+    height: 100%;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 25px rgba(255, 107, 107, 0.2);
+    box-shadow: 0 8px 25px rgba(255,193,7,0.25);
 }
 
-/* 按钮样式 */
-.btn-primary {
-    background-color: #ff6b6b;
-    border-color: #ff6b6b;
-    padding: 10px 25px;
-    border-radius: 25px;
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-title {
     font-weight: 600;
-    transition: all 0.3s;
+    margin-bottom: 0.5rem;
 }
 
-.btn-primary:hover {
-    background-color: #ff5252;
-    border-color: #ff5252;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-}
-
-/* 标题样式 */
-.display-1 {
-    color: #ff6b6b;
-}
-
-/* 页脚样式 */
-footer {
-    background-color: #f8f9fa;
-    border-top: 1px solid #eee;
-    padding: 20px 0;
-    margin-top: 50px;
-}
-
-footer p {
-    color: #666;
+.card-text {
+    color: #6c757d;
     font-size: 0.9rem;
 }
 
-/* 响应式 */
-@media (max-width: 768px) {
-    .display-1 {
-        font-size: 3rem;
-    }
-    
-    .card {
-        margin-bottom: 20px;
-    }
-    
-    .navbar-brand {
-        font-size: 1.2rem;
-    }
+/* ===== Button styles ===== */
+.btn-primary {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #ffca2c;
+    border-color: #ffca2c;
+    color: #212529;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255,193,7,0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-outline-primary {
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-outline-primary:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+}
+
+/* ===== Form styles ===== */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 0.6rem 1rem;
+}
+
+.form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255,193,7,0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.3rem;
+}
+
+/* ===== Badge styles ===== */
+.badge {
+    padding: 0.5rem 0.8rem;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529;
+}
+
+/* ===== Footer styles ===== */
+footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    margin-top: 3rem;
+}
+
+footer a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: #ffc107;
+}
+
+footer h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #495057;
+}
+
+/* ===== Utility classes ===== */
+.text-primary {
+    color: #ffc107 !important;
+}
+
+.bg-primary {
+    background-color: #ffc107 !important;
+}
+
+.border-primary {
+    border-color: #ffc107 !important;
+}
+
+/* ===== Price styles ===== */
+.price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffc107;
+}
+
+.original-price {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+}
+
+/* ===== Rating stars ===== */
+.rating {
+    color: #ffc107;
+    font-size: 0.9rem;
+}
+
+.rating .bi-star-fill {
+    color: #ffc107;
+}
+
+.rating .bi-star {
+    color: #dee2e6;
 }

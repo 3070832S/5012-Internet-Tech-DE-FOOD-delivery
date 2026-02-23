@@ -3,11 +3,20 @@ Django settings for food_delivery_project project.
 """
 
 from pathlib import Path
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project like this: BASE_DIR / 'subdir'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Template directory path
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+# Static files directory path
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# Media files directory path
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
 # SECURITY WARNING: keep the secret key used in production secret!
+# ❗ 需要组员提供真正的密钥，不能用这个假的
 SECRET_KEY = 'django-insecure-your-secret-key-here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -23,13 +32,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 你们的APP
-    'accounts',
-    'carts',
-    'restaurants',
-    'orders',
-    'merchants',
-    'reviews',
+    # Your apps (based on PPT design spec)
+    'accounts',      # User authentication (M1)
+    'carts',         # Shopping cart (M3)
+    'restaurants',   # Restaurant and menu browsing (M2)
+    'orders',        # Order management (M4, M5)
+    'merchants',     # Merchant management (C2)
+    'reviews',       # Reviews and favorites (S1, S2, C1)
 ]
 
 MIDDLEWARE = [
@@ -44,10 +53,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'food_delivery_project.urls'
 
+# Template configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -62,11 +73,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'food_delivery_project.wsgi.application'
 
-# Database
+# Database configuration
+# ❗ 需要组员确认：用 SQLite 还是换 MySQL/PostgreSQL？
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -92,15 +104,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+# Static files configuration (your CSS/JS)
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    STATIC_DIR,
 ]
 
-# Media files
+# Media files configuration (user uploaded images)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = MEDIA_DIR
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

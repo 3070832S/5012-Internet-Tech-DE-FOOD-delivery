@@ -1,5 +1,105 @@
-/* 手机端 (< 768px) */
+/* ===== Mobile styles (小于768px) ===== */
 @media (max-width: 767.98px) {
+    /* 导航栏 */
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .navbar .nav-link {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* 标题 */
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* 卡片 */
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .card-img-top {
+        height: 150px;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .card-text {
+        font-size: 0.85rem;
+    }
+    
+    /* 按钮 */
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-group {
+        width: 100%;
+    }
+    
+    /* 表格（购物车用） */
+    .table {
+        font-size: 0.85rem;
+    }
+    
+    .table td, .table th {
+        padding: 0.4rem;
+    }
+    
+    /* 表单 */
+    .form-control {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .form-label {
+        font-size: 0.9rem;
+    }
+    
+    /* 波浪 */
+    .wave {
+        height: 12px;
+    }
+    
+    /* 页脚 */
+    footer {
+        text-align: center;
+        padding: 1.5rem 0;
+    }
+    
+    footer .row > div {
+        margin-bottom: 1.5rem;
+    }
+    
+    footer h5 {
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    footer p, footer a {
+        font-size: 0.85rem;
+    }
+    
+    /* 测试页面的三大板块 */
+    .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
     .display-1 {
         font-size: 3rem;
     }
@@ -8,40 +108,144 @@
         font-size: 2rem;
     }
     
-    .card {
-        margin-bottom: 1rem;
+    /* 价格 */
+    .price {
+        font-size: 1.1rem;
     }
     
-    .navbar-brand {
-        font-size: 1.2rem;
+    .original-price {
+        font-size: 0.8rem;
+    }
+    
+    /* 评分 */
+    .rating {
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== Tablet styles (768px - 992px) ===== */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* 卡片图片 */
+    .card-img-top {
+        height: 160px;
+    }
+    
+    /* 两列布局 */
+    .col-md-4 {
+        width: 50%;
+    }
+    
+    /* 字体微调 */
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    .btn {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    /* 波浪 */
+    .wave {
+        height: 15px;
+    }
+}
+
+/* ===== Small desktop (992px - 1200px) ===== */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .card-img-top {
+        height: 170px;
     }
     
     .container {
-        padding-left: 20px;
-        padding-right: 20px;
+        max-width: 960px;
     }
 }
 
-/* 平板端 (768px - 992px) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .card-img-top {
-        height: 150px;
-    }
-}
-
-/* 确保所有设备都能正常显示 */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* 触摸设备优化 */
+/* ===== Touch devices optimization ===== */
 @media (hover: none) {
     .card:hover {
         transform: none;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
     }
     
     .btn:hover {
         transform: none;
+        background-color: #ffc107;
+        color: #212529;
+        box-shadow: none;
+    }
+    
+    .btn-primary:hover {
+        background-color: #ffc107;
+    }
+}
+
+/* ===== Landscape orientation on mobile ===== */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .card-img-top {
+        height: 120px;
+    }
+    
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+    
+    .navbar .nav-link {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== Small phones (小于576px) ===== */
+@media (max-width: 575.98px) {
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    .display-1 {
+        font-size: 2.5rem;
+    }
+    
+    .card-img-top {
+        height: 130px;
+    }
+    
+    .badge {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* ===== Print styles ===== */
+@media print {
+    .navbar, .footer, .btn, .wave {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
     }
 }
