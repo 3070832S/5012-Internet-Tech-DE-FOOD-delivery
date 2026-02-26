@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews - Food Delivery{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">Customer Reviews</h1>
+    <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Filter by
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">All Reviews</a></li>
+            <li><a class="dropdown-item" href="#">5 Stars</a></li>
+            <li><a class="dropdown-item" href="#">4 Stars</a></li>
+            <li><a class="dropdown-item" href="#">3 Stars</a></li>
+            <li><a class="dropdown-item" href="#">2 Stars</a></li>
+            <li><a class="dropdown-item" href="#">1 Star</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Rating Summary -->
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body p-4">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center mb-3 mb-md-0">
+                <h1 class="display-3 text-warning mb-0">4.7</h1>
+                <div class="text-warning mb-2">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                </div>
+                <p class="text-muted mb-0">Based on 128 reviews</p>
+            </div>
+            <div class="col-md-9">
+                <div class="row g-2">
+                    <div class="col-3 col-md-2 text-end">5 ★</div>
+                    <div class="col-7 col-md-8">
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2">75%</div>
+                    
+                    <div class="col-3 col-md-2 text-end">4 ★</div>
+                    <div class="col-7 col-md-8">
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 15%"></div>
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2">15%</div>
+                    
+                    <div class="col-3 col-md-2 text-end">3 ★</div>
+                    <div class="col-7 col-md-8">
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 5%"></div>
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2">5%</div>
+                    
+                    <div class="col-3 col-md-2 text-end">2 ★</div>
+                    <div class="col-7 col-md-8">
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 3%"></div>
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2">3%</div>
+                    
+                    <div class="col-3 col-md-2 text-end">1 ★</div>
+                    <div class="col-7 col-md-8">
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 2%"></div>
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2">2%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reviews List -->
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Review 1 -->
+        <div class="card shadow-sm border-0 mb-3">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="https://picsum.photos/50/50?random=1" class="rounded-circle me-3" width="50" height="50" alt="User">
+                        <div>
+                            <h6 class="mb-1">John Smith</h6>
+                            <small class="text-muted">Reviewed on Feb 24, 2026</small>
+                        </div>
+                    </div>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+                <h6 class="mb-2">Burger House</h6>
+                <p class="text-muted mb-2">"Best burgers in town! The patty was juicy and the service was fast. Will definitely order again."</p>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-light text-dark me-2">Order #FD-2026-001</span>
+                    <small class="text-muted">
+                        <i class="bi bi-hand-thumbs-up"></i> 12
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Review 2 -->
+        <div class="card shadow-sm border-0 mb-3">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="https://picsum.photos/50/50?random=2" class="rounded-circle me-3" width="50" height="50" alt="User">
+                        <div>
+                            <h6 class="mb-1">Emma Wilson</h6>
+                            <small class="text-muted">Reviewed on Feb 23, 2026</small>
+                        </div>
+                    </div>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                </div>
+                <h6 class="mb-2">Sushi Place</h6>
+                <p class="text-muted mb-2">"Fresh sushi and quick delivery. The salmon roll was amazing, but the rice could be better."</p>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-light text-dark me-2">Order #FD-2026-002</span>
+                    <small class="text-muted">
+                        <i class="bi bi-hand-thumbs-up"></i> 8
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Review 3 -->
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="https://picsum.photos/50/50?random=3" class="rounded-circle me-3" width="50" height="50" alt="User">
+                        <div>
+                            <h6 class="mb-1">Michael Brown</h6>
+                            <small class="text-muted">Reviewed on Feb 22, 2026</small>
+                        </div>
+                    </div>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                </div>
+                <h6 class="mb-2">Pizza King</h6>
+                <p class="text-muted mb-2">"Good pizza but delivery was a bit slow. The crust was perfect though!"</p>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-light text-dark me-2">Order #FD-2026-003</span>
+                    <small class="text-muted">
+                        <i class="bi bi-hand-thumbs-up"></i> 5
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
+            <div class="card-body p-4">
+                <h5 class="mb-4">Write a Review</h5>
+                <p class="text-muted small mb-3">Have you ordered from us recently? Share your experience!</p>
+                <a href="#" class="btn btn-primary w-100 mb-3">
+                    <i class="bi bi-pencil"></i> Write Review
+                </a>
+                <hr>
+                <h6 class="mb-3">Top Reviewers</h6>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>John S.</span>
+                    <span class="text-warning">12 reviews</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Emma W.</span>
+                    <span class="text-warning">8 reviews</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Michael B.</span>
+                    <span class="text-warning">5 reviews</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

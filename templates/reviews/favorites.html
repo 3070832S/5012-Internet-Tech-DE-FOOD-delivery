@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+
+{% block title %}My Favorites - Food Delivery{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">My Favorite Restaurants</h1>
+    <a href="/restaurants/list/" class="btn btn-outline-primary">
+        <i class="bi bi-shop"></i> Browse More
+    </a>
+</div>
+
+<!-- Favorites Grid -->
+<div class="row g-4">
+    <!-- Favorite Card 1 -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card h-100">
+            <div class="position-relative">
+                <img src="https://picsum.photos/300/200?random=1" class="card-img-top" alt="Burger House">
+                <button class="btn position-absolute top-0 end-0 m-2 text-danger bg-white rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">Burger House</h5>
+                    <span class="badge bg-warning text-dark">4.8 ★</span>
+                </div>
+                <p class="card-text text-muted small mb-2">
+                    <i class="bi bi-clock"></i> 25-35 min · 
+                    <i class="bi bi-cash"></i> Min $15
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    <i class="bi bi-tag"></i> Burgers · Fast Food · American
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-truck"></i> Free delivery
+                    </small>
+                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Card 2 -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card h-100">
+            <div class="position-relative">
+                <img src="https://picsum.photos/300/200?random=2" class="card-img-top" alt="Sushi Place">
+                <button class="btn position-absolute top-0 end-0 m-2 text-danger bg-white rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">Sushi Place</h5>
+                    <span class="badge bg-warning text-dark">4.9 ★</span>
+                </div>
+                <p class="card-text text-muted small mb-2">
+                    <i class="bi bi-clock"></i> 30-45 min · 
+                    <i class="bi bi-cash"></i> Min $20
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    <i class="bi bi-tag"></i> Japanese · Sushi · Seafood
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-truck"></i> Delivery $3.99
+                    </small>
+                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Card 3 -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card h-100">
+            <div class="position-relative">
+                <img src="https://picsum.photos/300/200?random=3" class="card-img-top" alt="Pizza King">
+                <button class="btn position-absolute top-0 end-0 m-2 text-danger bg-white rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">Pizza King</h5>
+                    <span class="badge bg-warning text-dark">4.7 ★</span>
+                </div>
+                <p class="card-text text-muted small mb-2">
+                    <i class="bi bi-clock"></i> 20-30 min · 
+                    <i class="bi bi-cash"></i> Min $12
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    <i class="bi bi-tag"></i> Pizza · Italian · Pasta
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-truck"></i> Delivery $2.49
+                    </small>
+                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Card 4 -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card h-100">
+            <div class="position-relative">
+                <img src="https://picsum.photos/300/200?random=4" class="card-img-top" alt="Noodle House">
+                <button class="btn position-absolute top-0 end-0 m-2 text-danger bg-white rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">Noodle House</h5>
+                    <span class="badge bg-warning text-dark">4.6 ★</span>
+                </div>
+                <p class="card-text text-muted small mb-2">
+                    <i class="bi bi-clock"></i> 25-40 min · 
+                    <i class="bi bi-cash"></i> Min $10
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    <i class="bi bi-tag"></i> Chinese · Noodles · Soup
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-truck"></i> Delivery $1.99
+                    </small>
+                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Card 5 -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card h-100">
+            <div class="position-relative">
+                <img src="https://picsum.photos/300/200?random=5" class="card-img-top" alt="Taco Stand">
+                <button class="btn position-absolute top-0 end-0 m-2 text-danger bg-white rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">Taco Stand</h5>
+                    <span class="badge bg-warning text-dark">4.8 ★</span>
+                </div>
+                <p class="card-text text-muted small mb-2">
+                    <i class="bi bi-clock"></i> 15-25 min · 
+                    <i class="bi bi-cash"></i> Min $8
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    <i class="bi bi-tag"></i> Mexican · Tacos · Burritos
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-truck"></i> Delivery $1.49
+                    </small>
+                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Card 6 -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card h-100">
+            <div class="position-relative">
+                <img src="https://picsum.photos/300/200?random=6" class="card-img-top" alt="Curry House">
+                <button class="btn position-absolute top-0 end-0 m-2 text-danger bg-white rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">Curry House</h5>
+                    <span class="badge bg-warning text-dark">4.7 ★</span>
+                </div>
+                <p class="card-text text-muted small mb-2">
+                    <i class="bi bi-clock"></i> 30-50 min · 
+                    <i class="bi bi-cash"></i> Min $16
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    <i class="bi bi-tag"></i> Indian · Curry · Spicy
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-truck"></i> Delivery $2.99
+                    </small>
+                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Empty State (if no favorites) -->
+<!-- <div class="text-center py-5">
+    <i class="bi bi-heart display-1 text-muted"></i>
+    <h3 class="mt-3">No favorites yet</h3>
+    <p class="text-muted">Start adding restaurants to your favorites!</p>
+    <a href="/restaurants/list/" class="btn btn-primary mt-3">Browse Restaurants</a>
+</div> -->
+{% endblock %}

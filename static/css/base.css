@@ -34,7 +34,7 @@ main {
     border-radius: 5px;
 }
 
-/* ===== Wave animation (pure CSS) ===== */
+/* ===== Wave animation ===== */
 .wave {
     position: absolute;
     bottom: -5px;
@@ -127,30 +127,15 @@ main {
     color: #212529;
 }
 
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-    border-radius: 25px;
-    padding: 0.5rem 1.5rem;
-    font-weight: 500;
+.btn-outline-secondary {
+    border-color: #dee2e6;
+    color: #6c757d;
 }
 
-/* ===== Form styles ===== */
-.form-control {
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
-    padding: 0.6rem 1rem;
-}
-
-.form-control:focus {
+.btn-outline-secondary:hover {
+    background-color: #f8f9fa;
     border-color: #ffc107;
-    box-shadow: 0 0 0 0.2rem rgba(255,193,7,0.25);
-}
-
-.form-label {
-    font-weight: 500;
-    color: #495057;
-    margin-bottom: 0.3rem;
+    color: #212529;
 }
 
 /* ===== Badge styles ===== */
@@ -166,6 +151,47 @@ main {
 
 .badge.bg-warning {
     background-color: #ffc107 !important;
+    color: #212529;
+}
+
+/* ===== Pagination styles ===== */
+.page-link {
+    color: #ffc107;
+    border: none;
+    margin: 0 3px;
+    border-radius: 8px;
+}
+
+.page-link:hover {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.page-item.active .page-link {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+}
+
+/* ===== Dropdown styles ===== */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border-radius: 12px;
+}
+
+.dropdown-item:hover {
+    background-color: #fff3cd;
+    color: #212529;
+}
+
+.dropdown-item:active {
+    background-color: #ffc107;
     color: #212529;
 }
 
