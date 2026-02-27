@@ -47,9 +47,9 @@ urlpatterns = [
     # Orders management (from PPT Page 8)
     # path('orders/', include('orders.urls')),
     
-    # ❗ 需要组员确认：merchants/ 这个URL前缀对不对？（商家端）
+    # Merchant app routes (commented until backend is ready)
     # path('merchants/', include('merchants.urls')),
     
-    # ❗ 需要组员确认：reviews/ 这个URL前缀对不对？（评价收藏）
+    # Review app routes (commented until backend is ready)
     # path('reviews/', include('reviews.urls')),
 ]

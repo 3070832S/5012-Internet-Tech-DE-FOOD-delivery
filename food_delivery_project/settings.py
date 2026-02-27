@@ -16,7 +16,6 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# ❗ 需要组员提供真正的密钥，不能用这个假的
 SECRET_KEY = 'django-insecure-your-secret-key-here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -74,7 +73,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'food_delivery_project.wsgi.application'
 
 # Database configuration
-# ❗ 需要组员确认：用 SQLite 还是换 MySQL/PostgreSQL？
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
