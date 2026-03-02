@@ -1,0 +1,112 @@
+/* ===== Orders page specific styles ===== */
+
+/* Order card */
+.order-card {
+    transition: all 0.2s ease;
+    border-left: 4px solid #ffc107;
+    margin-bottom: 1rem;
+}
+
+.order-card:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transform: translateX(5px);
+}
+
+/* Order status badges */
+.order-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-delivered {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-preparing {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Order timeline */
+.order-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.order-timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: #dee2e6;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.9rem;
+    top: 0.25rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffc107;
+    border: 2px solid white;
+    z-index: 2;
+}
+
+.timeline-item.completed::before {
+    background: #28a745;
+}
+
+.timeline-item .time {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* Order item card */
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .order-timeline {
+        padding-left: 1.5rem;
+    }
+    
+    .order-item img {
+        width: 50px;
+        height: 50px;
+    }
+}
