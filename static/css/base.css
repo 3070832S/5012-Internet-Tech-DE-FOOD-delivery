@@ -138,6 +138,14 @@ main {
     color: #212529;
 }
 
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+}
+
 /* ===== Badge styles ===== */
 .badge {
     padding: 0.5rem 0.8rem;
@@ -193,6 +201,24 @@ main {
 .dropdown-item:active {
     background-color: #ffc107;
     color: #212529;
+}
+
+/* ===== Form styles ===== */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 0.6rem 1rem;
+}
+
+.form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255,193,7,0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.3rem;
 }
 
 /* ===== Footer styles ===== */
@@ -258,4 +284,34 @@ footer h5 {
 
 .rating .bi-star {
     color: #dee2e6;
+}
+
+/* ===== Accessibility fixes ===== */
+#cart-total.text-warning {
+    color: #000000 !important;
+}
+
+/* Fix heading hierarchy */
+h4.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Ensure focus indicators are visible */
+:focus {
+    outline: 3px solid #ffc107 !important;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        background-color: #000000;
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+    
+    .text-warning {
+        color: #000000 !important;
+    }
 }
