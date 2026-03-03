@@ -115,7 +115,11 @@ MEDIA_ROOT = MEDIA_DIR
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Auth: 登录跳转（与 accounts 应用配合）
+# Auth: 登录跳转与认证后端（支持用户名/邮箱登录）
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailOrUsernameBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
