@@ -4,6 +4,14 @@
 ## 🍔 Project Overview (项目简介)
 This project is a food delivery web application that provides users with convenient online food ordering services. Main features include: user registration and login, browsing nearby restaurants and menus, managing shopping cart, filling delivery information and placing orders, real-time order tracking. It also provides merchants with menu management and order viewing functions.
 
+## 🏗️ 后端系统架构 (Backend Architecture)
+
+后端采用 **Python + Django** 实现，项目结构与请求流程说明见：[**docs/ARCHITECTURE.md**](docs/ARCHITECTURE.md)。
+
+- **项目配置**: `food_delivery_project/`（settings、根 URL、WSGI）
+- **应用模块**: accounts、restaurants、carts、orders、merchants、reviews
+- **路由**: 根 `urls.py` 通过 `include()` 将路径委托给各 app 的 `urls.py`
+
 ## 👥 Team Members & Responsibilities (团队成员与分工)
 
 ### Design Phase (based on Design Specification)
