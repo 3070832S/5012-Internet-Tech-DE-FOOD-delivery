@@ -1,10 +1,11 @@
 """restaurants 应用 URL 配置（餐厅与菜单 M2）"""
 from django.urls import path
-from django.views.generic import TemplateView
+from . import views
 
 app_name = 'restaurants'
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='restaurants/list.html'), name='index'),
-    path('list/', TemplateView.as_view(template_name='restaurants/list.html'), name='restaurant_list'),
+    path('', views.restaurant_list, name='index'),
+    path('list/', views.restaurant_list, name='restaurant_list'),
+    path('<slug:slug>/', views.restaurant_menu, name='menu'),
 ]

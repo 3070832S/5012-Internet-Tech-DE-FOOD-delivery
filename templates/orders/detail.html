@@ -1,222 +1,67 @@
 {% extends 'base.html' %}
-
-{% block title %}Order Details - Food Delivery{% endblock %}
+{% load static %}
+{% block title %}订单 {{ order.order_no }} - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="mb-4">
-    <a href="/orders/history/" class="text-decoration-none text-muted">
-        <i class="bi bi-arrow-left"></i> Back to Orders
-    </a>
+    <a href="{% url 'orders:history' %}" class="text-decoration-none text-muted"><i class="bi bi-arrow-left"></i> 返回订单列表</a>
 </div>
 
 <div class="row">
-    <!-- Order Details -->
     <div class="col-lg-8">
-        <!-- Order Header -->
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-start mb-4">
                     <div>
-                        <h1 class="h3 mb-2">Order #FD-2026-02-25-001</h1>
-                        <p class="text-muted mb-0">Placed on February 25, 2026 at 6:30 PM</p>
+                        <h1 class="h3 mb-2">订单 {{ order.order_no }}</h1>
+                        <p class="text-muted mb-0">下单时间 {{ order.created_at|date:"Y-m-d H:i" }}</p>
                     </div>
-                    <span class="badge bg-success px-3 py-2">Delivered</span>
+                    <span class="badge
+                        {% if order.status == 'pending' %}bg-secondary
+                        {% elif order.status == 'preparing' %}bg-info
+                        {% elif order.status == 'delivering' %}bg-primary
+                        {% elif order.status == 'completed' %}bg-success
+                        {% else %}bg-dark{% endif %} px-3 py-2">{{ order.get_status_display }}</span>
                 </div>
-                
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <h6 class="mb-2">Delivery Address</h6>
-                        <p class="mb-1">John Doe</p>
-                        <p class="mb-1">123 Main Street, Apt 4B</p>
-                        <p class="mb-1">New York, NY 10001</p>
-                        <p class="mb-0">Phone: +1 234 567 890</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h6 class="mb-2">Payment Method</h6>
-                        <p class="mb-1">
-                            <i class="bi bi-credit-card"></i> Credit Card (ending in 4242)
-                        </p>
-                        <p class="mb-0 text-muted small">Paid on delivery</p>
+                        <h6 class="mb-2">收货地址</h6>
+                        <p class="mb-1">{{ order.recipient_name }} {{ order.phone }}</p>
+                        <p class="mb-0 text-muted">{{ order.address_line }}{% if order.city %}，{{ order.city }}{% endif %}{% if order.postcode %} {{ order.postcode }}{% endif %}</p>
                     </div>
                 </div>
+                {% if order.note %}<p class="mt-2 mb-0 text-muted"><strong>备注：</strong>{{ order.note }}</p>{% endif %}
             </div>
         </div>
-        
-        <!-- Order Items -->
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4">
-                <h5 class="mb-4">Order Items</h5>
-                
-                <!-- Item 1 -->
-                <div class="row align-items-center mb-4 pb-3 border-bottom">
-                    <div class="col-md-2 col-3">
-                        <img src="https://picsum.photos/80/80?random=1" class="img-fluid rounded" alt="Burger">
-                    </div>
-                    <div class="col-md-5 col-6">
-                        <h6 class="mb-1">Classic Cheeseburger</h6>
-                        <p class="text-muted small mb-0">Burger House</p>
-                    </div>
-                    <div class="col-md-2 col-3 text-center">
-                        <span class="text-muted">x1</span>
-                    </div>
-                    <div class="col-md-3 col-3 text-end">
-                        <span class="fw-bold">$12.99</span>
-                    </div>
+                <h5 class="mb-4">订单商品</h5>
+                {% for oi in order.items.all %}
+                <div class="row align-items-center mb-3 pb-3 border-bottom">
+                    <div class="col-md-6">{{ oi.dish_name }} x{{ oi.quantity }}</div>
+                    <div class="col-md-6 text-end"><span class="fw-bold">¥{{ oi.line_total }}</span></div>
                 </div>
-                
-                <!-- Item 2 -->
-                <div class="row align-items-center mb-4 pb-3 border-bottom">
-                    <div class="col-md-2 col-3">
-                        <img src="https://picsum.photos/80/80?random=2" class="img-fluid rounded" alt="Sushi">
-                    </div>
-                    <div class="col-md-5 col-6">
-                        <h6 class="mb-1">Sushi Roll Set</h6>
-                        <p class="text-muted small mb-0">Sushi Place</p>
-                    </div>
-                    <div class="col-md-2 col-3 text-center">
-                        <span class="text-muted">x2</span>
-                    </div>
-                    <div class="col-md-3 col-3 text-end">
-                        <span class="fw-bold">$49.98</span>
-                    </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="row align-items-center">
-                    <div class="col-md-2 col-3">
-                        <img src="https://picsum.photos/80/80?random=3" class="img-fluid rounded" alt="Pizza">
-                    </div>
-                    <div class="col-md-5 col-6">
-                        <h6 class="mb-1">Margherita Pizza</h6>
-                        <p class="text-muted small mb-0">Pizza King</p>
-                    </div>
-                    <div class="col-md-2 col-3 text-center">
-                        <span class="text-muted">x1</span>
-                    </div>
-                    <div class="col-md-3 col-3 text-end">
-                        <span class="fw-bold">$18.99</span>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
-        
-        <!-- Delivery Timeline -->
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-4">
-                <h5 class="mb-4">Delivery Timeline</h5>
-                
-                <div class="timeline">
-                    <!-- Timeline Item 1 -->
-                    <div class="d-flex mb-3">
-                        <div class="me-3">
-                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px;">
-                                <i class="bi bi-check-lg text-white small"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="mb-0 fw-bold">Order Placed</p>
-                            <small class="text-muted">February 25, 2026 - 6:30 PM</small>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 2 -->
-                    <div class="d-flex mb-3">
-                        <div class="me-3">
-                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px;">
-                                <i class="bi bi-check-lg text-white small"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="mb-0 fw-bold">Restaurant Confirmed</p>
-                            <small class="text-muted">February 25, 2026 - 6:35 PM</small>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 3 -->
-                    <div class="d-flex mb-3">
-                        <div class="me-3">
-                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px;">
-                                <i class="bi bi-check-lg text-white small"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="mb-0 fw-bold">Food Prepared</p>
-                            <small class="text-muted">February 25, 2026 - 6:55 PM</small>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 4 -->
-                    <div class="d-flex mb-3">
-                        <div class="me-3">
-                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px;">
-                                <i class="bi bi-check-lg text-white small"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="mb-0 fw-bold">Out for Delivery</p>
-                            <small class="text-muted">February 25, 2026 - 7:10 PM</small>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 5 -->
-                    <div class="d-flex">
-                        <div class="me-3">
-                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 24px; height: 24px;">
-                                <i class="bi bi-check-lg text-white small"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="mb-0 fw-bold">Delivered</p>
-                            <small class="text-muted">February 25, 2026 - 7:30 PM</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% if order.can_cancel %}
+        <form method="post" action="{% url 'orders:cancel' order.pk %}" class="mb-3" onsubmit="return confirm('确定取消该订单？');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">取消订单</button>
+        </form>
+        {% endif %}
     </div>
-    
-    <!-- Sidebar -->
     <div class="col-lg-4">
-        <!-- Order Summary -->
-        <div class="card shadow-sm border-0 mb-4 sticky-top" style="top: 100px;">
+        <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
             <div class="card-body p-4">
-                <h5 class="mb-4">Order Summary</h5>
-                
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Subtotal</span>
-                    <span>$81.96</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Delivery Fee</span>
-                    <span>$5.00</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Tax</span>
-                    <span>$6.56</span>
-                </div>
-                
+                <h5 class="mb-4">费用明细</h5>
+                <div class="d-flex justify-content-between mb-2"><span>商品小计</span><span>¥{{ order.subtotal }}</span></div>
+                <div class="d-flex justify-content-between mb-2"><span>配送费</span><span>¥{{ order.delivery_fee }}</span></div>
                 <hr>
-                
-                <div class="d-flex justify-content-between mb-4">
-                    <span class="h5">Total</span>
-                    <span class="h5 text-warning">$93.52</span>
+                <div class="d-flex justify-content-between mb-0">
+                    <span class="h5">合计</span>
+                    <span class="h5 text-warning">¥{{ order.total }}</span>
                 </div>
-                
-                <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-outline-primary">
-                        <i class="bi bi-star"></i> Rate Order
-                    </a>
-                    <a href="#" class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-repeat"></i> Reorder
-                    </a>
-                    <a href="#" class="btn btn-outline-danger">
-                        <i class="bi bi-flag"></i> Report Issue
-                    </a>
-                </div>
-                
-                <p class="text-muted small text-center mt-3 mb-0">
-                    Need help? <a href="#" class="text-primary">Contact Support</a>
-                </p>
             </div>
         </div>
     </div>

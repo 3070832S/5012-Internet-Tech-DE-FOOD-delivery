@@ -1,9 +1,13 @@
 """carts 应用 URL 配置（购物车 M3）"""
 from django.urls import path
-from django.views.generic import TemplateView
+from . import views
 
 app_name = 'carts'
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='carts/cart.html'), name='cart'),
+    path('', views.cart_detail, name='cart'),
+    path('add/<int:dish_id>/', views.add_to_cart, name='add'),
+    path('item/<int:item_id>/update/', views.update_quantity, name='update_quantity'),
+    path('item/<int:item_id>/remove/', views.remove_item, name='remove_item'),
+    path('clear/', views.clear_cart, name='clear'),
 ]

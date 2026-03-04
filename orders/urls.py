@@ -1,13 +1,14 @@
 """orders 应用 URL 配置（订单 M4, M5）"""
 from django.urls import path
-from django.views.generic import TemplateView
+from . import views
 
 app_name = 'orders'
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='orders/history.html'), name='index'),
-    path('checkout/', TemplateView.as_view(template_name='orders/checkout.html'), name='checkout'),
-    path('status/', TemplateView.as_view(template_name='orders/status.html'), name='order_status'),
-    path('history/', TemplateView.as_view(template_name='orders/history.html'), name='order_history'),
-    path('detail/', TemplateView.as_view(template_name='orders/detail.html'), name='order_detail'),
+    path('', views.order_list, name='index'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('place/', views.place_order, name='place_order'),
+    path('history/', views.order_list, name='history'),
+    path('<int:pk>/', views.order_detail, name='detail'),
+    path('<int:pk>/cancel/', views.cancel_order, name='cancel'),
 ]

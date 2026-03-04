@@ -1,201 +1,41 @@
 {% extends 'base.html' %}
-
-{% block title %}Order History - Food Delivery{% endblock %}
+{% load static %}
+{% block title %}订单列表 - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2">Order History</h1>
-    <a href="/restaurants/" class="btn btn-outline-primary">
-        <i class="bi bi-shop"></i> Order Again
-    </a>
+    <h1 class="h2">我的订单</h1>
+    <a href="{% url 'restaurants:index' %}" class="btn btn-outline-primary"><i class="bi bi-shop"></i> 继续下单</a>
 </div>
 
-<!-- Order History List -->
+{% if orders %}
 <div class="row">
     <div class="col-lg-8">
-        <!-- Order 1 -->
+        {% for order in orders %}
         <div class="card shadow-sm border-0 mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h5 class="mb-1">Order #FD-2026-02-25-001</h5>
-                        <p class="text-muted small mb-0">Placed on Feb 25, 2026 · 3 items</p>
+                        <h5 class="mb-1">订单 {{ order.order_no }}</h5>
+                        <p class="text-muted small mb-0">{{ order.created_at|date:"Y-m-d H:i" }} · {{ order.items.count }} 件商品</p>
                     </div>
-                    <span class="badge bg-success">Delivered</span>
+                    <span class="badge
+                        {% if order.status == 'pending' %}bg-secondary
+                        {% elif order.status == 'preparing' %}bg-info
+                        {% elif order.status == 'delivering' %}bg-primary
+                        {% elif order.status == 'completed' %}bg-success
+                        {% else %}bg-dark{% endif %}">{{ order.get_status_display }}</span>
                 </div>
-                
-                <div class="row g-3 mb-3">
-                    <div class="col-md-4 col-6">
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/50/50?random=1" class="rounded me-2" alt="Burger">
-                            <div>
-                                <small class="d-block fw-bold">Classic Cheeseburger</small>
-                                <small class="text-muted">Burger House</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6">
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/50/50?random=2" class="rounded me-2" alt="Sushi">
-                            <div>
-                                <small class="d-block fw-bold">Sushi Roll Set</small>
-                                <small class="text-muted">Sushi Place</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6">
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/50/50?random=3" class="rounded me-2" alt="Pizza">
-                            <div>
-                                <small class="d-block fw-bold">Margherita Pizza</small>
-                                <small class="text-muted">Pizza King</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="fw-bold text-warning">$86.96</span>
-                        <span class="text-muted ms-2">Total</span>
-                    </div>
-                    <div>
-                        <a href="/orders/status/" class="btn btn-sm btn-outline-primary me-2">
-                            <i class="bi bi-eye"></i> View Details
-                        </a>
-                        <a href="#" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-arrow-repeat"></i> Reorder
-                        </a>
-                    </div>
+                    <span class="fw-bold text-warning">¥{{ order.total }}</span>
+                    <a href="{% url 'orders:detail' order.pk %}" class="btn btn-sm btn-outline-primary">查看详情</a>
                 </div>
             </div>
         </div>
-        
-        <!-- Order 2 -->
-        <div class="card shadow-sm border-0 mb-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h5 class="mb-1">Order #FD-2026-02-24-003</h5>
-                        <p class="text-muted small mb-0">Placed on Feb 24, 2026 · 2 items</p>
-                    </div>
-                    <span class="badge bg-success">Delivered</span>
-                </div>
-                
-                <div class="row g-3 mb-3">
-                    <div class="col-md-4 col-6">
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/50/50?random=4" class="rounded me-2" alt="Taco">
-                            <div>
-                                <small class="d-block fw-bold">Taco Platter</small>
-                                <small class="text-muted">Taco Stand</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6">
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/50/50?random=5" class="rounded me-2" alt="Curry">
-                            <div>
-                                <small class="d-block fw-bold">Chicken Curry</small>
-                                <small class="text-muted">Curry House</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="fw-bold text-warning">$42.50</span>
-                        <span class="text-muted ms-2">Total</span>
-                    </div>
-                    <div>
-                        <a href="/orders/status/" class="btn btn-sm btn-outline-primary me-2">
-                            <i class="bi bi-eye"></i> View Details
-                        </a>
-                        <a href="#" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-arrow-repeat"></i> Reorder
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Order 3 -->
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h5 class="mb-1">Order #FD-2026-02-23-012</h5>
-                        <p class="text-muted small mb-0">Placed on Feb 23, 2026 · 1 item</p>
-                    </div>
-                    <span class="badge bg-warning">In Progress</span>
-                </div>
-                
-                <div class="row g-3 mb-3">
-                    <div class="col-md-4 col-6">
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/50/50?random=6" class="rounded me-2" alt="Noodles">
-                            <div>
-                                <small class="d-block fw-bold">Pad Thai</small>
-                                <small class="text-muted">Noodle House</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="fw-bold text-warning">$14.99</span>
-                        <span class="text-muted ms-2">Total</span>
-                    </div>
-                    <div>
-                        <a href="/orders/status/" class="btn btn-sm btn-outline-primary me-2">
-                            <i class="bi bi-eye"></i> View Details
-                        </a>
-                        <a href="#" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-arrow-repeat"></i> Reorder
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Sidebar -->
-    <div class="col-lg-4">
-        <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
-            <div class="card-body p-4">
-                <h5 class="mb-4">Order Summary</h5>
-                
-                <div class="d-flex justify-content-between mb-3">
-                    <span>Total Orders</span>
-                    <span class="fw-bold">12</span>
-                </div>
-                <div class="d-flex justify-content-between mb-3">
-                    <span>Total Spent</span>
-                    <span class="fw-bold text-warning">$524.75</span>
-                </div>
-                <div class="d-flex justify-content-between mb-4">
-                    <span>Member Since</span>
-                    <span class="text-muted">Jan 2026</span>
-                </div>
-                
-                <hr>
-                
-                <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-outline-primary">
-                        <i class="bi bi-gift"></i> Get Coupon
-                    </a>
-                    <a href="#" class="btn btn-outline-secondary">
-                        <i class="bi bi-star"></i> Rate Your Orders
-                    </a>
-                </div>
-                
-                <p class="text-muted small text-center mt-3 mb-0">
-                    <i class="bi bi-truck"></i> Free delivery on orders over $30
-                </p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
+{% else %}
+<p class="text-muted">暂无订单，<a href="{% url 'restaurants:index' %}">去下单</a>。</p>
+{% endif %}
 {% endblock %}
