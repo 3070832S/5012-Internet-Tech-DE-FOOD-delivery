@@ -14,7 +14,7 @@
         {% for order in orders %}
         <div class="card shadow-sm border-0 mb-3">
             <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <h5 class="mb-1">订单 {{ order.order_no }}</h5>
                         <p class="text-muted small mb-0">{{ order.created_at|date:"Y-m-d H:i" }} · {{ order.items.count }} 件商品</p>

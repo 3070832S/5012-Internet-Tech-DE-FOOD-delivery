@@ -8,174 +8,164 @@
     <p class="text-muted">Order #FD-2026-02-26-001</p>
 </div>
 
-<!-- Order Progress -->
-<div class="card shadow-sm border-0 mb-4">
+<!-- Order Progress Card -->
+<div class="card border-0 shadow-sm mb-4">
     <div class="card-body p-4">
         <h5 class="mb-4">Order Progress</h5>
         
-        <!-- Progress Steps (水平排列，不重叠) -->
-        <div class="d-flex justify-content-between mb-4 position-relative" style="padding-top: 20px;">
-            <!-- 背景进度条（Preparing 阶段：40%） -->
-            <div class="progress position-absolute top-0 start-0 w-100" style="height: 4px; top: 30px !important;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;"></div>
+        <!-- Progress Steps -->
+        <div class="position-relative mb-5" style="padding: 10px 0;">
+            <!-- Progress bar background -->
+            <div class="progress" style="height: 4px; position: absolute; top: 30px; width: 100%; z-index: 1; background-color: #e9ecef;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
             </div>
             
-            <!-- 步骤点 -->
-            <div class="text-center" style="z-index: 2; background: white; padding: 0 10px;">
-                <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 40px; height: 40px;">
-                    <i class="bi bi-check-lg"></i>
+            <!-- Steps container -->
+            <div class="d-flex justify-content-between position-relative" style="z-index: 2;">
+                <!-- Step 1 - Order Placed -->
+                <div class="text-center step-order-placed">
+                    <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <small class="fw-bold">Order Placed</small>
                 </div>
-                <small>Order Placed</small>
-            </div>
-            
-            <div class="text-center" style="z-index: 2; background: white; padding: 0 10px;">
-                <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 40px; height: 40px;">
-                    <i class="bi bi-check-lg"></i>
+                
+                <!-- Step 2 - Confirmed -->
+                <div class="text-center step-confirmed">
+                    <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <small class="fw-bold">Confirmed</small>
                 </div>
-                <small>Confirmed</small>
-            </div>
-            
-            <div class="text-center" style="z-index: 2; background: white; padding: 0 10px;">
-                <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 40px; height: 40px;">
-                    <i class="bi bi-check-lg"></i>
+                
+                <!-- Step 3 - Preparing -->
+                <div class="text-center step-preparing">
+                    <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <small class="fw-bold">Preparing</small>
                 </div>
-                <small>Preparing</small>
-            </div>
-            
-            <div class="text-center" style="z-index: 2; background: white; padding: 0 10px;">
-                <div class="bg-light border rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 40px; height: 40px;">
-                    <i class="bi bi-truck text-muted"></i>
+                
+                <!-- Step 4 - On the Way -->
+                <div class="text-center step-on-the-way">
+                    <div class="bg-white border rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px; border-color: #ffc107 !important;">
+                        <i class="bi bi-truck text-warning"></i>
+                    </div>
+                    <small class="text-muted fw-bold">On the Way</small>
                 </div>
-                <small class="text-muted">On the Way</small>
-            </div>
-            
-            <div class="text-center" style="z-index: 2; background: white; padding: 0 10px;">
-                <div class="bg-light border rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 40px; height: 40px;">
-                    <i class="bi bi-house text-muted"></i>
+                
+                <!-- Step 5 - Delivered -->
+                <div class="text-center step-delivered">
+                    <div class="bg-white border rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px; border-color: #ffc107 !important;">
+                        <i class="bi bi-house text-warning"></i>
+                    </div>
+                    <small class="text-muted fw-bold">Delivered</small>
                 </div>
-                <small class="text-muted">Delivered</small>
             </div>
         </div>
         
         <!-- Estimated Delivery Time -->
-        <div class="bg-light p-3 rounded text-center mt-4">
-            <p class="mb-1 text-muted">Estimated Delivery</p>
-            <h4 class="text-warning mb-0">25-35 minutes</h4>
+        <div class="bg-light p-3 rounded-3 text-center mt-4">
+            <p class="text-muted mb-1">Estimated Delivery</p>
+            <h3 class="text-warning mb-0" id="estimated-time">25-35 minutes</h3>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <!-- Order Details -->
+<!-- Order Items Section -->
+<div class="row g-4">
     <div class="col-lg-8">
-        <!-- Order Items (统一 Preparing 状态) -->
-        <div class="card shadow-sm border-0 mb-4">
+        <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
                 <h5 class="mb-4">Order Items</h5>
                 
-                <!-- Order Item 1 -->
-                <div class="row align-items-center mb-3 pb-3 border-bottom">
-                    <div class="col-md-2 col-3">
-                        <img src="https://picsum.photos/80/80?random=1" class="img-fluid rounded" alt="Burger">
-                    </div>
-                    <div class="col-md-6 col-6">
-                        <h6 class="mb-1">Classic Cheeseburger</h6>
-                        <p class="text-muted small mb-0">Burger House</p>
-                    </div>
-                    <div class="col-md-2 col-3 text-center">
-                        <span class="badge bg-warning">Preparing</span>
-                    </div>
-                    <div class="col-md-2 col-3 text-end">
-                        <span class="fw-bold">$12.99</span>
-                    </div>
-                </div>
-                
-                <!-- Order Item 2 -->
-                <div class="row align-items-center mb-3 pb-3 border-bottom">
-                    <div class="col-md-2 col-3">
-                        <img src="https://picsum.photos/80/80?random=2" class="img-fluid rounded" alt="Sushi">
-                    </div>
-                    <div class="col-md-6 col-6">
-                        <h6 class="mb-1">Sushi Roll Set</h6>
-                        <p class="text-muted small mb-0">Sushi Place</p>
-                    </div>
-                    <div class="col-md-2 col-3 text-center">
-                        <span class="badge bg-warning">Preparing</span>
-                    </div>
-                    <div class="col-md-2 col-3 text-end">
-                        <span class="fw-bold">$49.98</span>
+                <!-- Item 1 -->
+                <div class="d-flex align-items-start mb-4 pb-3 border-bottom">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop" class="rounded-3 me-3" style="width: 70px; height: 70px; object-fit: cover;" alt="Burger">
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="mb-1">Classic Cheeseburger</h6>
+                                <p class="text-muted small mb-2">Burger House</p>
+                            </div>
+                            <span class="fw-bold">$12.99</span>
+                        </div>
+                        <!-- 修复：去掉 text-warning，文字改为深色 -->
+                        <span class="badge bg-warning bg-opacity-10 text-dark px-3 py-2 rounded-pill mt-2">Preparing</span>
                     </div>
                 </div>
                 
-                <!-- Order Item 3 -->
-                <div class="row align-items-center">
-                    <div class="col-md-2 col-3">
-                        <img src="https://picsum.photos/80/80?random=3" class="img-fluid rounded" alt="Pizza">
+                <!-- Item 2 -->
+                <div class="d-flex align-items-start mb-4 pb-3 border-bottom">
+                    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=80&h=80&fit=crop" class="rounded-3 me-3" style="width: 70px; height: 70px; object-fit: cover;" alt="Sushi">
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="mb-1">Sushi Roll Set</h6>
+                                <p class="text-muted small mb-2">Sushi Place</p>
+                            </div>
+                            <span class="fw-bold">$49.98</span>
+                        </div>
+                        <span class="badge bg-warning bg-opacity-10 text-dark px-3 py-2 rounded-pill mt-2">Preparing</span>
                     </div>
-                    <div class="col-md-6 col-6">
-                        <h6 class="mb-1">Margherita Pizza</h6>
-                        <p class="text-muted small mb-0">Pizza King</p>
-                    </div>
-                    <div class="col-md-2 col-3 text-center">
-                        <span class="badge bg-warning">Preparing</span>
-                    </div>
-                    <div class="col-md-2 col-3 text-end">
-                        <span class="fw-bold">$18.99</span>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="d-flex align-items-start">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=80&h=80&fit=crop" class="rounded-3 me-3" style="width: 70px; height: 70px; object-fit: cover;" alt="Pizza">
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="mb-1">Margherita Pizza</h6>
+                                <p class="text-muted small mb-2">Pizza King</p>
+                            </div>
+                            <span class="fw-bold">$18.99</span>
+                        </div>
+                        <span class="badge bg-warning bg-opacity-10 text-dark px-3 py-2 rounded-pill mt-2">Preparing</span>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Delivery Address -->
-        <div class="card shadow-sm border-0">
+        <div class="card border-0 shadow-sm mt-4">
             <div class="card-body p-4">
                 <h5 class="mb-3">Delivery Address</h5>
-                <p class="mb-1">John Doe</p>
-                <p class="mb-1">123 Main Street, Apt 4B</p>
-                <p class="mb-1">New York, NY 10001</p>
-                <p class="mb-0">Phone: +1 234 567 890</p>
+                <p class="mb-1 fw-bold">John Doe</p>
+                <p class="mb-1 text-muted">123 Main Street, Apt 4B</p>
+                <p class="mb-1 text-muted">New York, NY 10001</p>
+                <p class="mb-0 text-muted">Phone: +1 234 567 890</p>
             </div>
         </div>
     </div>
     
     <!-- Order Summary -->
     <div class="col-lg-4">
-        <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
+        <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
             <div class="card-body p-4">
                 <h5 class="mb-4">Order Summary</h5>
                 
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Subtotal</span>
-                    <span>$81.96</span>
+                <div class="d-flex justify-content-between mb-3 pb-2 border-bottom">
+                    <span class="text-muted">Subtotal</span>
+                    <span class="fw-bold">$81.96</span>
                 </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Delivery Fee</span>
-                    <span>$5.00</span>
+                <div class="d-flex justify-content-between mb-3 pb-2 border-bottom">
+                    <span class="text-muted">Delivery Fee</span>
+                    <span class="fw-bold">$5.00</span>
                 </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Tax</span>
-                    <span>$6.56</span>
+                <div class="d-flex justify-content-between mb-3 pb-2 border-bottom">
+                    <span class="text-muted">Tax</span>
+                    <span class="fw-bold">$6.56</span>
                 </div>
-                
-                <hr>
                 
                 <div class="d-flex justify-content-between mb-4">
                     <span class="h5">Total</span>
                     <span class="h5 text-warning">$93.52</span>
                 </div>
                 
-                <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-outline-primary">
-                        <i class="bi bi-headset"></i> Contact Support
-                    </a>
-                    <a href="/restaurants/" class="btn btn-outline-secondary">
-                        <i class="bi bi-shop"></i> Order Again
-                    </a>
-                </div>
-                
-                <p class="text-muted small text-center mt-3 mb-0">
-                    Need help? <a href="#" class="text-primary">Chat with us</a>
-                </p>
+                <a href="#" class="btn btn-outline-primary w-100 py-2">
+                    <i class="bi bi-headset me-2"></i>Contact Support
+                </a>
             </div>
         </div>
     </div>

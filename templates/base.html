@@ -24,7 +24,7 @@
             <a class="navbar-brand text-dark fw-bold" href="/">
                 <i class="bi bi-chef-hat"></i> Food Delivery
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -119,6 +119,9 @@
     
     <!-- Custom JS -->
     <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/ajax-requests.js' %}"></script>
+    <script src="{% static 'js/order-tracking.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
