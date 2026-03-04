@@ -35,13 +35,19 @@ def register(request):
 
 
 class UserLoginView(LoginView):
-    """登录：会话管理由 Django 处理"""
+    """登录：会话管理由 Django 处理；登录后合并匿名购物车"""
     form_class = UserLoginForm
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
 
     def get_success_url(self):
         return reverse_lazy('accounts:profile')
+
+    def form_valid(self, form):
+        from carts.utils import merge_cart_after_login
+        response = super().form_valid(form)
+        merge_cart_after_login(self.request)
+        return response
 
 
 @require_http_methods(['GET', 'POST'])

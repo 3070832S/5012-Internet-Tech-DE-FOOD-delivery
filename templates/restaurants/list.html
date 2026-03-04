@@ -1,197 +1,42 @@
 {% extends 'base.html' %}
-
-{% block title %}Restaurants - Food Delivery{% endblock %}
+{% load static %}
+{% block title %}餐厅列表 - Food Delivery{% endblock %}
 
 {% block content %}
-<!-- Page Header -->
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2">Restaurants Near You</h1>
-    <div class="dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            Sort by
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Rating</a></li>
-            <li><a class="dropdown-item" href="#">Delivery Time</a></li>
-            <li><a class="dropdown-item" href="#">Min Order</a></li>
-            <li><a class="dropdown-item" href="#">Distance</a></li>
-        </ul>
-    </div>
+    <h1 class="h2">附近餐厅</h1>
 </div>
 
-<!-- Restaurant Grid -->
 <div class="row g-4">
-    <!-- Restaurant Card 1 - Burger House -->
+    {% for r in restaurants %}
     <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm restaurant-card">
-            <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop" class="card-img-top" alt="Burger House">
-                <span class="position-absolute top-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded small">25-35 min</span>
-            </div>
+        <div class="card h-100">
+            {% if r.image %}
+            <img src="{{ r.image.url }}" class="card-img-top" alt="{{ r.name }}" style="height:200px;object-fit:cover">
+            {% else %}
+            <img src="https://picsum.photos/300/200?random={{ r.id }}" class="card-img-top" alt="{{ r.name }}" style="height:200px;object-fit:cover">
+            {% endif %}
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">Burger House</h5>
-                    <span class="text-warning">4.8 ★</span>
+                    <h5 class="card-title mb-0">{{ r.name }}</h5>
+                    <span class="badge bg-warning text-dark">{{ r.rating }} ★</span>
                 </div>
                 <p class="card-text text-muted small mb-2">
-                    Burgers · Fast Food · American
+                    <i class="bi bi-clock"></i> {{ r.estimate_minutes_min }}-{{ r.estimate_minutes_max }} 分钟 ·
+                    <i class="bi bi-cash"></i> 起送 ¥{{ r.min_order }}
                 </p>
-                <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-cash"></i> Min $15
-                </p>
+                {% if r.tags %}<p class="card-text text-muted small mb-3"><i class="bi bi-tag"></i> {{ r.tags }}</p>{% endif %}
                 <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Delivery $2.99</span>
-                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
+                    <small class="text-muted"><i class="bi bi-truck"></i> 配送费 ¥{{ r.delivery_fee }}</small>
+                    <a href="{% url 'restaurants:menu' r.slug %}" class="btn btn-primary btn-sm">查看菜单</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Restaurant Card 2 - Sushi Place -->
-    <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm restaurant-card">
-            <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&h=400&fit=crop" class="card-img-top" alt="Sushi Place">
-                <span class="position-absolute top-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded small">30-45 min</span>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">Sushi Place</h5>
-                    <span class="text-warning">4.9 ★</span>
-                </div>
-                <p class="card-text text-muted small mb-2">
-                    Japanese · Sushi · Seafood
-                </p>
-                <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-cash"></i> Min $20
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Delivery $3.99</span>
-                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
-                </div>
-            </div>
-        </div>
+    {% empty %}
+    <div class="col-12 text-center py-5 text-muted">
+        <p>暂无餐厅，请稍后再试或联系管理员添加。</p>
     </div>
-
-    <!-- Restaurant Card 3 - Pizza King -->
-    <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm restaurant-card">
-            <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop" class="card-img-top" alt="Pizza King">
-                <span class="position-absolute top-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded small">20-30 min</span>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">Pizza King</h5>
-                    <span class="text-warning">4.7 ★</span>
-                </div>
-                <p class="card-text text-muted small mb-2">
-                    Pizza · Italian · Pasta
-                </p>
-                <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-cash"></i> Min $12
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Delivery $2.49</span>
-                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Restaurant Card 4 - Noodle House -->
-    <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm restaurant-card">
-            <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&h=400&fit=crop" class="card-img-top" alt="Noodle House">
-                <span class="position-absolute top-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded small">25-40 min</span>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">Noodle House</h5>
-                    <span class="text-warning">4.6 ★</span>
-                </div>
-                <p class="card-text text-muted small mb-2">
-                    Chinese · Noodles · Soup
-                </p>
-                <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-cash"></i> Min $10
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Delivery $1.99</span>
-                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Restaurant Card 5 - Taco Stand -->
-    <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm restaurant-card">
-            <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=600&h=400&fit=crop" class="card-img-top" alt="Taco Stand">
-                <span class="position-absolute top-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded small">15-25 min</span>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">Taco Stand</h5>
-                    <span class="text-warning">4.8 ★</span>
-                </div>
-                <p class="card-text text-muted small mb-2">
-                    Mexican · Tacos · Burritos
-                </p>
-                <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-cash"></i> Min $8
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Delivery $1.49</span>
-                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Restaurant Card 6 - Curry House -->
-    <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm restaurant-card">
-            <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=400&fit=crop" class="card-img-top" alt="Curry House">
-                <span class="position-absolute top-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded small">30-50 min</span>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">Curry House</h5>
-                    <span class="text-warning">4.7 ★</span>
-                </div>
-                <p class="card-text text-muted small mb-2">
-                    Indian · Curry · Spicy
-                </p>
-                <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-cash"></i> Min $16
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Delivery $2.99</span>
-                    <a href="#" class="btn btn-primary btn-sm">View Menu</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
-
-<!-- Pagination -->
-<nav class="mt-5">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#">Previous</a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
 {% endblock %}

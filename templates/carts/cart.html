@@ -1,142 +1,76 @@
 {% extends 'base.html' %}
-
-{% block title %}Shopping Cart - Food Delivery{% endblock %}
+{% load static %}
+{% block title %}购物车 - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2">Your Cart</h1>
-    <a href="/restaurants/" class="btn btn-outline-primary">
-        <i class="bi bi-arrow-left"></i> Continue Shopping
-    </a>
+    <h1 class="h2">购物车</h1>
+    <a href="{% url 'restaurants:index' %}" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> 继续选餐</a>
 </div>
 
 <div class="row">
-    <!-- Cart Items -->
     <div class="col-lg-8">
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4">
-                <!-- Cart Item 1 -->
-                <div class="row align-items-center mb-4 pb-3 border-bottom cart-item-row">
+                {% if items %}
+                {% for item in items %}
+                <div class="row align-items-center mb-4 pb-3 border-bottom {% if not forloop.last %}{% endif %}">
                     <div class="col-md-2 col-4">
-                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop" class="img-fluid rounded" alt="Classic Cheeseburger" loading="lazy">
+                        {% if item.dish.image %}
+                        <img src="{{ item.dish.image.url }}" class="img-fluid rounded" alt="{{ item.dish.name }}" style="height:80px;object-fit:cover">
+                        {% else %}
+                        <img src="https://picsum.photos/100/100?random={{ item.dish.id }}" class="img-fluid rounded" alt="{{ item.dish.name }}">
+                        {% endif %}
                     </div>
                     <div class="col-md-4 col-8">
-                        <h4 class="mb-1">Classic Cheeseburger</h4>
-                        <p class="text-muted small mb-0">Burger House</p>
+                        <h5 class="mb-1">{{ item.dish.name }}</h5>
+                        <p class="text-muted small mb-0">{{ item.dish.restaurant.name }}</p>
                     </div>
                     <div class="col-md-2 col-4 mt-3 mt-md-0">
-                        <div class="input-group" style="width: 120px;">
-                            <button class="btn btn-outline-secondary btn-sm decrease-qty" type="button" aria-label="Decrease quantity">−</button>
-                            <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly aria-label="Quantity">
-                            <button class="btn btn-outline-secondary btn-sm increase-qty" type="button" aria-label="Increase quantity">+</button>
-                        </div>
+                        <form action="{% url 'carts:update_quantity' item.id %}" method="post" class="d-inline-flex align-items-center">
+                            {% csrf_token %}
+                            <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" class="btn btn-outline-secondary btn-sm">−</button>
+                            <span class="px-2">{{ item.quantity }}</span>
+                            <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" class="btn btn-outline-secondary btn-sm">+</button>
+                        </form>
                     </div>
                     <div class="col-md-2 col-4 mt-3 mt-md-0 text-center">
-                        <span class="item-price" data-price="12.99">$12.99</span>
+                        <span class="fw-bold">¥{{ item.line_total }}</span>
                     </div>
                     <div class="col-md-2 col-4 mt-3 mt-md-0 text-end">
-                        <button class="btn btn-sm btn-outline-danger remove-item" aria-label="Remove item">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-                    <!-- 小计 -->
-                    <div class="col-12 text-end mt-2">
-                        <span class="item-subtotal">$12.99</span>
+                        <form action="{% url 'carts:remove_item' item.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link text-danger p-0"><i class="bi bi-trash"></i></button>
+                        </form>
                     </div>
                 </div>
-
-                <!-- Cart Item 2 -->
-                <div class="row align-items-center mb-4 pb-3 border-bottom cart-item-row">
-                    <div class="col-md-2 col-4">
-                        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=100&h=100&fit=crop" class="img-fluid rounded" alt="Sushi Roll Set" loading="lazy">
-                    </div>
-                    <div class="col-md-4 col-8">
-                        <h4 class="mb-1">Sushi Roll Set</h4>
-                        <p class="text-muted small mb-0">Sushi Place</p>
-                    </div>
-                    <div class="col-md-2 col-4 mt-3 mt-md-0">
-                        <div class="input-group" style="width: 120px;">
-                            <button class="btn btn-outline-secondary btn-sm decrease-qty" type="button" aria-label="Decrease quantity">−</button>
-                            <input type="text" class="form-control form-control-sm text-center qty-input" value="2" readonly aria-label="Quantity">
-                            <button class="btn btn-outline-secondary btn-sm increase-qty" type="button" aria-label="Increase quantity">+</button>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-4 mt-3 mt-md-0 text-center">
-                        <span class="item-price" data-price="24.99">$24.99</span>
-                    </div>
-                    <div class="col-md-2 col-4 mt-3 mt-md-0 text-end">
-                        <button class="btn btn-sm btn-outline-danger remove-item" aria-label="Remove item">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-                    <!-- 小计 -->
-                    <div class="col-12 text-end mt-2">
-                        <span class="item-subtotal">$49.98</span>
-                    </div>
-                </div>
-
-                <!-- Cart Item 3 -->
-                <div class="row align-items-center cart-item-row">
-                    <div class="col-md-2 col-4">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=100&h=100&fit=crop" class="img-fluid rounded" alt="Margherita Pizza" loading="lazy">
-                    </div>
-                    <div class="col-md-4 col-8">
-                        <h4 class="mb-1">Margherita Pizza</h4>
-                        <p class="text-muted small mb-0">Pizza King</p>
-                    </div>
-                    <div class="col-md-2 col-4 mt-3 mt-md-0">
-                        <div class="input-group" style="width: 120px;">
-                            <button class="btn btn-outline-secondary btn-sm decrease-qty" type="button" aria-label="Decrease quantity">−</button>
-                            <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly aria-label="Quantity">
-                            <button class="btn btn-outline-secondary btn-sm increase-qty" type="button" aria-label="Increase quantity">+</button>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-4 mt-3 mt-md-0 text-center">
-                        <span class="item-price" data-price="18.99">$18.99</span>
-                    </div>
-                    <div class="col-md-2 col-4 mt-3 mt-md-0 text-end">
-                        <button class="btn btn-sm btn-outline-danger remove-item" aria-label="Remove item">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-                    <!-- 小计 -->
-                    <div class="col-12 text-end mt-2">
-                        <span class="item-subtotal">$18.99</span>
-                    </div>
-                </div>
+                {% endfor %}
+                <form action="{% url 'carts:clear' %}" method="post" class="mt-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">清空购物车</button>
+                </form>
+                {% else %}
+                <p class="text-muted mb-0">购物车是空的，<a href="{% url 'restaurants:index' %}">去选餐</a>。</p>
+                {% endif %}
             </div>
         </div>
     </div>
-
-    <!-- Order Summary -->
     <div class="col-lg-4">
         <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
             <div class="card-body p-4">
-                <h5 class="mb-4">Order Summary</h5>
-                
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Subtotal</span>
-                    <span id="cart-subtotal">$81.96</span>
+                <h5 class="mb-4">订单汇总</h5>
+                <div class="d-flex justify-content-between mb-2"><span>商品小计</span><span class="fw-bold">¥{{ subtotal }}</span></div>
+                <div class="d-flex justify-content-between mb-2"><span>配送费</span><span class="fw-bold">¥{{ delivery_fee }}</span></div>
+                <div class="d-flex justify-content-between mb-3 pt-2 border-top">
+                    <span class="h5">合计</span>
+                    <span class="h5 text-warning">¥{{ total }}</span>
                 </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span>Delivery Fee</span>
-                    <span id="delivery-fee" data-fee="5.00">$5.00</span>
-                </div>
-                
-                <hr>
-                
-                <div class="d-flex justify-content-between mb-4">
-                    <span class="h5">Total</span>
-                    <span class="h5 text-warning" id="cart-total">$86.96</span>
-                </div>
-                
-                <a href="/orders/checkout/" class="btn btn-primary w-100 py-2">
-                    Proceed to Checkout
-                </a>
-                
-                <p class="text-muted small text-center mt-3 mb-0">
-                    <i class="bi bi-lock"></i> Secure checkout
-                </p>
+                {% if items %}
+                <a href="{% url 'orders:checkout' %}" class="btn btn-primary w-100 py-2">去结算</a>
+                <p class="text-muted small text-center mt-3 mb-0">需登录后下单</p>
+                {% else %}
+                <button type="button" class="btn btn-secondary w-100 py-2" disabled>去结算</button>
+                {% endif %}
             </div>
         </div>
     </div>

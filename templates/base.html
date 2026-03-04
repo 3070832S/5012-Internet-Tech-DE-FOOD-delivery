@@ -30,18 +30,18 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="/restaurants/">
-                            <i class="bi bi-shop"></i> Restaurants
+                        <a class="nav-link text-dark" href="{% url 'restaurants:index' %}">
+                            <i class="bi bi-shop"></i> 餐厅
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="/cart/">
-                            <i class="bi bi-cart"></i> Cart
+                        <a class="nav-link text-dark" href="{% url 'carts:cart' %}">
+                            <i class="bi bi-cart"></i> 购物车
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="/orders/">
-                            <i class="bi bi-box"></i> Orders
+                        <a class="nav-link text-dark" href="{% url 'orders:history' %}">
+                            <i class="bi bi-box"></i> 订单
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -94,9 +94,9 @@
                 <div class="col-md-4 mb-3">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/restaurants/" class="text-decoration-none text-muted">Restaurants</a></li>
-                        <li><a href="/orders/" class="text-decoration-none text-muted">My Orders</a></li>
-                        <li><a href="{% url 'accounts:profile' %}" class="text-decoration-none text-muted">Profile</a></li>
+                        <li><a href="{% url 'restaurants:index' %}" class="text-decoration-none text-muted">餐厅</a></li>
+                        <li><a href="{% url 'orders:history' %}" class="text-decoration-none text-muted">我的订单</a></li>
+                        <li><a href="{% url 'accounts:profile' %}" class="text-decoration-none text-muted">个人中心</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">
