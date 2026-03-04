@@ -315,3 +315,11 @@ h4.card-title {
         color: #000000 !important;
     }
 }
+
+/* ===== Dropdown menu fix ===== */
+.navbar {
+    overflow: visible !important;
+}
+.dropdown-menu {
+    z-index: 9999 !important;
+}

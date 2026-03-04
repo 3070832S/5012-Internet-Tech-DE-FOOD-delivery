@@ -96,7 +96,7 @@
                     <ul class="list-unstyled">
                         <li><a href="/restaurants/" class="text-decoration-none text-muted">Restaurants</a></li>
                         <li><a href="/orders/" class="text-decoration-none text-muted">My Orders</a></li>
-                        <li><a href="/accounts/profile/" class="text-decoration-none text-muted">Profile</a></li>
+                        <li><a href="{% url 'accounts:profile' %}" class="text-decoration-none text-muted">Profile</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">
@@ -119,6 +119,9 @@
     
     <!-- Custom JS -->
     <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/ajax-requests.js' %}"></script>
+    <script src="{% static 'js/order-tracking.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

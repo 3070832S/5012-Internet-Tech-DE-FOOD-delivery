@@ -13,7 +13,7 @@
     <div class="card-body p-4">
         <h5 class="mb-4">Order Progress</h5>
         
-        <!-- Progress Steps (fixed) -->
+        <!-- Progress Steps -->
         <div class="position-relative mb-5" style="padding: 10px 0;">
             <!-- Progress bar background -->
             <div class="progress" style="height: 4px; position: absolute; top: 30px; width: 100%; z-index: 1; background-color: #e9ecef;">
@@ -22,40 +22,40 @@
             
             <!-- Steps container -->
             <div class="d-flex justify-content-between position-relative" style="z-index: 2;">
-                <!-- Step 1 -->
-                <div class="text-center">
+                <!-- Step 1 - Order Placed -->
+                <div class="text-center step-order-placed">
                     <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px;">
                         <i class="bi bi-check-lg"></i>
                     </div>
                     <small class="fw-bold">Order Placed</small>
                 </div>
                 
-                <!-- Step 2 -->
-                <div class="text-center">
+                <!-- Step 2 - Confirmed -->
+                <div class="text-center step-confirmed">
                     <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px;">
                         <i class="bi bi-check-lg"></i>
                     </div>
                     <small class="fw-bold">Confirmed</small>
                 </div>
                 
-                <!-- Step 3 -->
-                <div class="text-center">
+                <!-- Step 3 - Preparing -->
+                <div class="text-center step-preparing">
                     <div class="bg-warning rounded-circle text-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px;">
                         <i class="bi bi-check-lg"></i>
                     </div>
                     <small class="fw-bold">Preparing</small>
                 </div>
                 
-                <!-- Step 4 -->
-                <div class="text-center">
+                <!-- Step 4 - On the Way -->
+                <div class="text-center step-on-the-way">
                     <div class="bg-white border rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px; border-color: #ffc107 !important;">
                         <i class="bi bi-truck text-warning"></i>
                     </div>
                     <small class="text-muted fw-bold">On the Way</small>
                 </div>
                 
-                <!-- Step 5 -->
-                <div class="text-center">
+                <!-- Step 5 - Delivered -->
+                <div class="text-center step-delivered">
                     <div class="bg-white border rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" style="width: 45px; height: 45px; border-color: #ffc107 !important;">
                         <i class="bi bi-house text-warning"></i>
                     </div>
@@ -64,63 +64,64 @@
             </div>
         </div>
         
-        <!-- Estimated Time -->
-        <div class="bg-light p-3 rounded-3 text-center">
+        <!-- Estimated Delivery Time -->
+        <div class="bg-light p-3 rounded-3 text-center mt-4">
             <p class="text-muted mb-1">Estimated Delivery</p>
-            <h3 class="text-warning mb-0">25-35 minutes</h3>
+            <h3 class="text-warning mb-0" id="estimated-time">25-35 minutes</h3>
         </div>
     </div>
 </div>
 
+<!-- Order Items Section -->
 <div class="row g-4">
-    <!-- Order Items -->
     <div class="col-lg-8">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
                 <h5 class="mb-4">Order Items</h5>
                 
                 <!-- Item 1 -->
-                <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid #f0f0f0;">
+                <div class="d-flex align-items-start mb-4 pb-3 border-bottom">
                     <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop" class="rounded-3 me-3" style="width: 70px; height: 70px; object-fit: cover;" alt="Burger">
                     <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="mb-1">Classic Cheeseburger</h6>
                                 <p class="text-muted small mb-2">Burger House</p>
                             </div>
                             <span class="fw-bold">$12.99</span>
                         </div>
-                        <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 rounded-pill">Preparing</span>
+                        <!-- 修复：去掉 text-warning，文字改为深色 -->
+                        <span class="badge bg-warning bg-opacity-10 text-dark px-3 py-2 rounded-pill mt-2">Preparing</span>
                     </div>
                 </div>
                 
                 <!-- Item 2 -->
-                <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid #f0f0f0;">
+                <div class="d-flex align-items-start mb-4 pb-3 border-bottom">
                     <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=80&h=80&fit=crop" class="rounded-3 me-3" style="width: 70px; height: 70px; object-fit: cover;" alt="Sushi">
                     <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="mb-1">Sushi Roll Set</h6>
                                 <p class="text-muted small mb-2">Sushi Place</p>
                             </div>
                             <span class="fw-bold">$49.98</span>
                         </div>
-                        <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 rounded-pill">Preparing</span>
+                        <span class="badge bg-warning bg-opacity-10 text-dark px-3 py-2 rounded-pill mt-2">Preparing</span>
                     </div>
                 </div>
                 
                 <!-- Item 3 -->
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-start">
                     <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=80&h=80&fit=crop" class="rounded-3 me-3" style="width: 70px; height: 70px; object-fit: cover;" alt="Pizza">
                     <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="mb-1">Margherita Pizza</h6>
                                 <p class="text-muted small mb-2">Pizza King</p>
                             </div>
                             <span class="fw-bold">$18.99</span>
                         </div>
-                        <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 rounded-pill">Preparing</span>
+                        <span class="badge bg-warning bg-opacity-10 text-dark px-3 py-2 rounded-pill mt-2">Preparing</span>
                     </div>
                 </div>
             </div>
@@ -144,15 +145,15 @@
             <div class="card-body p-4">
                 <h5 class="mb-4">Order Summary</h5>
                 
-                <div class="d-flex justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #f0f0f0;">
+                <div class="d-flex justify-content-between mb-3 pb-2 border-bottom">
                     <span class="text-muted">Subtotal</span>
                     <span class="fw-bold">$81.96</span>
                 </div>
-                <div class="d-flex justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #f0f0f0;">
+                <div class="d-flex justify-content-between mb-3 pb-2 border-bottom">
                     <span class="text-muted">Delivery Fee</span>
                     <span class="fw-bold">$5.00</span>
                 </div>
-                <div class="d-flex justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #f0f0f0;">
+                <div class="d-flex justify-content-between mb-3 pb-2 border-bottom">
                     <span class="text-muted">Tax</span>
                     <span class="fw-bold">$6.56</span>
                 </div>
