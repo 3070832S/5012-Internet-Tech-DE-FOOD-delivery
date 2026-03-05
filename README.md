@@ -71,3 +71,9 @@ DO NOT commit any API keys or secret keys. Use environment variables or local fi
 Always test your code before pushing. Check for broken links and console errors.
 
 Keep commit messages clear and descriptive (e.g., feat:, fix:, docs:, style:).
+
+## Documentation Update
+
+Added dataset description and project setup instructions.
+
+This branch contains additional documentation improvements.
