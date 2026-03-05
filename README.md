@@ -1,16 +1,23 @@
 # Food Delivery - Internet Technology Course Project
 # Food Delivery - Internet Technology Course Project
 
-## 🍔 Project Overview (项目简介)
+## Project Overview (项目简介)
 This project is a food delivery web application that provides users with convenient online food ordering services. Main features include: user registration and login, browsing nearby restaurants and menus, managing shopping cart, filling delivery information and placing orders, real-time order tracking. It also provides merchants with menu management and order viewing functions.
 
-## 🏗️ 后端系统架构 (Backend Architecture)
+## Backend Architecture(后端系统架构)
 
-后端采用 **Python + Django** 实现，项目结构与请求流程说明见：[**docs/ARCHITECTURE.md**](docs/ARCHITECTURE.md)。
+The backend is implemented using Python + Django. The project structure and request flow are described in:
 
-- **项目配置**: `food_delivery_project/`（settings、根 URL、WSGI）
-- **应用模块**: accounts、restaurants、carts、orders、merchants、reviews
-- **路由**: 根 `urls.py` 通过 `include()` 将路径委托给各 app 的 `urls.py`
+docs/ARCHITECTURE.md
+
+Project configuration:
+food_delivery_project/ (settings, root URL, WSGI)
+
+Application modules:
+accounts, restaurants, carts, orders, merchants, reviews
+
+Routing:
+The root urls.py delegates routes to each application’s urls.py using include().
 
 ## 👥 Team Members & Responsibilities (团队成员与分工)
 
@@ -24,9 +31,9 @@ This project is a food delivery web application that provides users with conveni
 * **JINQIANG KANG** - Back-end development + Database design
 * **SHENGZE DAI** - Database design + Report writing + Deployment
 
-## 🛠️ Standard Git Workflow (标准 Git 开发流程)
+## 🛠️ Standard Git Workflow 
 
-**Step 1: Sync with Main (开发前同步最新代码)**
+**Step 1: Sync with Main **
 ```bash
 git pull origin main
 Step 2: Write Code & Commit (开发并提交)
@@ -56,7 +63,7 @@ Access the app
 
 text
 http://127.0.0.1:8000/test/
-⚠️ Known Issues & Rules (注意事项)
+Known Issues & Rules (注意事项)
 DO NOT commit any __pycache__/, .DS_Store or db.sqlite3 files. They are already in the .gitignore.
 
 DO NOT commit any API keys or secret keys. Use environment variables or local files.
