@@ -1,0 +1,10 @@
+name,slug,description,min_order,delivery_fee,rating
+McDonalds,mcdonalds,Global fast food chain,10,2,4.7
+Subway,subway,Fresh sandwich restaurant,8,1.5,4.3
+Dominos,dominos,Pizza delivery restaurant,10,2,4.4
+Taco Bell,taco-bell,Mexican fast food,9,2,4.2
+Five Guys,five-guys,Burger and fries restaurant,12,2.5,4.7
+Nandos,nandos,Portuguese grilled chicken,12,2,4.6
+Wagamama,wagamama,Asian noodle restaurant,11,2,4.5
+Greggs,greggs,Bakery and sandwiches,6,1,4.2
+Pret A Manger,pret-a-manger,Sandwich and coffee shop,7,1.5,4.4
