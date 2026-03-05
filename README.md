@@ -77,3 +77,11 @@ Keep commit messages clear and descriptive (e.g., feat:, fix:, docs:, style:).
 Added dataset description and project setup instructions.
 
 This branch contains additional documentation improvements.
+
+## Backend Setup
+
+Run the following commands to start the server:
+
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
