@@ -1,0 +1,37 @@
+restaurant_slug,name,price,description
+dominos,Pepperoni Pizza,10.99,Pizza with pepperoni and mozzarella
+dominos,BBQ Chicken Pizza,11.49,Pizza with barbecue chicken
+
+glasgow-canteen,Fish and Chips,10.49,Traditional fried fish with chips
+glasgow-canteen,Chicken Curry Rice,9.99,Chicken curry served with rice
+
+greggs,Sausage Roll,2.49,Classic British sausage roll
+greggs,Chicken Bake,2.99,Baked pastry with chicken filling
+
+mala-project,Mala Beef Bowl,12.99,Spicy mala beef with vegetables
+mala-project,Mala Chicken Bowl,11.99,Spicy mala chicken with vegetables
+
+mcdonalds,Big Mac,6.49,Double beef burger with special sauce
+mcdonalds,McChicken,5.49,Chicken sandwich with lettuce and mayo
+
+starbucks,Latte,3.99,Espresso with steamed milk
+starbucks,Cappuccino,3.99,Espresso with milk foam
+
+subway,Italian BMT Sandwich,6.99,Sub sandwich with salami and ham
+subway,Chicken Teriyaki Sandwich,6.49,Sub sandwich with teriyaki chicken
+
+taco-bell,Taco Supreme,4.49,Beef taco with lettuce and cheese
+taco-bell,Crunchwrap Supreme,5.49,Grilled wrap with beef and vegetables
+
+quanjude,Roast Duck Half,38.00,Signature Beijing roast duck half portion
+quanjude,Roast Duck Whole,68.00,Whole Beijing roast duck
+quanjude,Duck Bone Soup,12.00,Soup made from duck bones
+quanjude,Duck Pancakes,3.00,Thin pancakes for roast duck
+quanjude,Shredded Scallion and Cucumber,2.50,Fresh vegetables for duck wraps
+quanjude,Sweet Bean Sauce,1.50,Traditional sauce for roast duck
+quanjude,Kung Pao Chicken,14.00,Spicy chicken with peanuts
+quanjude,Mapo Tofu,10.00,Tofu cooked in spicy sauce
+quanjude,Eggplant with Garlic Sauce,12.00,Stir fried eggplant in garlic sauce
+quanjude,Stir Fried Green Beans,11.00,Green beans with garlic
+quanjude,Garlic Broccoli,9.00,Broccoli stir fried with garlic
+quanjude,Steamed Rice,2.00,Plain steamed rice
