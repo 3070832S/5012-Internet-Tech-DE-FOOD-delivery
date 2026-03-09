@@ -1,10 +1,10 @@
 # Food Delivery - Internet Technology Course Project
 # Food Delivery - Internet Technology Course Project
 
-## Project Overview (项目简介)
+## Project Overview 
 This project is a food delivery web application that provides users with convenient online food ordering services. Main features include: user registration and login, browsing nearby restaurants and menus, managing shopping cart, filling delivery information and placing orders, real-time order tracking. It also provides merchants with menu management and order viewing functions.
 
-## Backend Architecture(后端系统架构)
+## Backend Architecture
 
 The backend is implemented using Python + Django. The project structure and request flow are described in:
 
@@ -19,7 +19,7 @@ accounts, restaurants, carts, orders, merchants, reviews
 Routing:
 The root urls.py delegates routes to each application’s urls.py using include().
 
-## 👥 Team Members & Responsibilities (团队成员与分工)
+## 👥 Team Members & Responsibilities 
 
 ### Design Phase (based on Design Specification)
 * **PEISHUO SONG (3070832S)** - Application Overview, User Stories (MoSCoW), Site Map design
@@ -31,7 +31,7 @@ The root urls.py delegates routes to each application’s urls.py using include(
 * **JINQIANG KANG** - Back-end development + Database design
 * **SHENGZE DAI** - Database design + Report writing + Deployment
 
-## 🛠️ Standard Git Workflow 
+## Standard Git Workflow 
 
 **Step 1: Sync with Main **
 ```bash
@@ -63,7 +63,7 @@ Access the app
 
 text
 http://127.0.0.1:8000/test/
-Known Issues & Rules (注意事项)
+Known Issues & Rules
 DO NOT commit any __pycache__/, .DS_Store or db.sqlite3 files. They are already in the .gitignore.
 
 DO NOT commit any API keys or secret keys. Use environment variables or local files.
