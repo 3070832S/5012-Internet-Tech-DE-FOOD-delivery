@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}订单 {{ order.order_no }} - Food Delivery{% endblock %}
+{% block title %}Order {{ order.order_no }} - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="mb-4">
-    <a href="{% url 'orders:history' %}" class="text-decoration-none text-muted"><i class="bi bi-arrow-left"></i> 返回订单列表</a>
+    <a href="{% url 'orders:history' %}" class="text-decoration-none text-muted"><i class="bi bi-arrow-left"></i> Back to orders</a>
 </div>
 
 <div class="row">
@@ -13,8 +13,8 @@
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-start mb-4">
                     <div>
-                        <h1 class="h3 mb-2">订单 {{ order.order_no }}</h1>
-                        <p class="text-muted mb-0">下单时间 {{ order.created_at|date:"Y-m-d H:i" }}</p>
+                        <h1 class="h3 mb-2">Order {{ order.order_no }}</h1>
+                        <p class="text-muted mb-0">Placed {{ order.created_at|date:"Y-m-d H:i" }}</p>
                     </div>
                     <span class="badge
                         {% if order.status == 'pending' %}bg-secondary
@@ -25,42 +25,42 @@
                 </div>
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <h6 class="mb-2">收货地址</h6>
+                        <h6 class="mb-2">Delivery address</h6>
                         <p class="mb-1">{{ order.recipient_name }} {{ order.phone }}</p>
-                        <p class="mb-0 text-muted">{{ order.address_line }}{% if order.city %}，{{ order.city }}{% endif %}{% if order.postcode %} {{ order.postcode }}{% endif %}</p>
+                        <p class="mb-0 text-muted">{{ order.address_line }}{% if order.city %}, {{ order.city }}{% endif %}{% if order.postcode %} {{ order.postcode }}{% endif %}</p>
                     </div>
                 </div>
-                {% if order.note %}<p class="mt-2 mb-0 text-muted"><strong>备注：</strong>{{ order.note }}</p>{% endif %}
+                {% if order.note %}<p class="mt-2 mb-0 text-muted"><strong>Note:</strong> {{ order.note }}</p>{% endif %}
             </div>
         </div>
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4">
-                <h5 class="mb-4">订单商品</h5>
+                <h5 class="mb-4">Order items</h5>
                 {% for oi in order.items.all %}
                 <div class="row align-items-center mb-3 pb-3 border-bottom">
                     <div class="col-md-6">{{ oi.dish_name }} x{{ oi.quantity }}</div>
-                    <div class="col-md-6 text-end"><span class="fw-bold">¥{{ oi.line_total }}</span></div>
+                    <div class="col-md-6 text-end"><span class="fw-bold">${{ oi.line_total }}</span></div>
                 </div>
                 {% endfor %}
             </div>
         </div>
         {% if order.can_cancel %}
-        <form method="post" action="{% url 'orders:cancel' order.pk %}" class="mb-3" onsubmit="return confirm('确定取消该订单？');">
+        <form method="post" action="{% url 'orders:cancel' order.pk %}" class="mb-3" onsubmit="return confirm('Cancel this order?');">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger">取消订单</button>
+            <button type="submit" class="btn btn-outline-danger">Cancel order</button>
         </form>
         {% endif %}
     </div>
     <div class="col-lg-4">
         <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
             <div class="card-body p-4">
-                <h5 class="mb-4">费用明细</h5>
-                <div class="d-flex justify-content-between mb-2"><span>商品小计</span><span>¥{{ order.subtotal }}</span></div>
-                <div class="d-flex justify-content-between mb-2"><span>配送费</span><span>¥{{ order.delivery_fee }}</span></div>
+                <h5 class="mb-4">Summary</h5>
+                <div class="d-flex justify-content-between mb-2"><span>Subtotal</span><span>${{ order.subtotal }}</span></div>
+                <div class="d-flex justify-content-between mb-2"><span>Delivery</span><span>${{ order.delivery_fee }}</span></div>
                 <hr>
                 <div class="d-flex justify-content-between mb-0">
-                    <span class="h5">合计</span>
-                    <span class="h5 text-warning">¥{{ order.total }}</span>
+                    <span class="h5">Total</span>
+                    <span class="h5 text-warning">${{ order.total }}</span>
                 </div>
             </div>
         </div>

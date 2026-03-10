@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}确认订单 - Food Delivery{% endblock %}
+{% block title %}Checkout - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="mb-4">
-    <h1 class="h2">确认订单</h1>
+    <h1 class="h2">Checkout</h1>
 </div>
 
 <form method="post" action="{% url 'orders:place_order' %}">
@@ -12,58 +12,58 @@
         <div class="col-lg-8">
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-body p-4">
-                    <h5 class="mb-4">选择收货地址</h5>
+                    <h5 class="mb-4">Select delivery address</h5>
                     {% if addresses %}
                     {% for addr in addresses %}
                     <div class="form-check mb-3 p-3 border rounded">
                         <input class="form-check-input" type="radio" name="address_id" id="addr{{ addr.id }}" value="{{ addr.id }}" {% if addr.is_default %}checked{% endif %} required>
                         <label class="form-check-label w-100" for="addr{{ addr.id }}">
                             <strong>{{ addr.recipient_name }}</strong> {{ addr.phone }}<br>
-                            <span class="text-muted">{{ addr.address_line }}{% if addr.city %}，{{ addr.city }}{% endif %}{% if addr.postcode %} {{ addr.postcode }}{% endif %}</span>
-                            {% if addr.is_default %}<span class="badge bg-warning text-dark ms-2">默认</span>{% endif %}
+                            <span class="text-muted">{{ addr.address_line }}{% if addr.city %}, {{ addr.city }}{% endif %}{% if addr.postcode %} {{ addr.postcode }}{% endif %}</span>
+                            {% if addr.is_default %}<span class="badge bg-warning text-dark ms-2">Default</span>{% endif %}
                         </label>
                     </div>
                     {% endfor %}
-                    <p class="small text-muted"><a href="{% url 'accounts:address_list' %}">管理收货地址</a></p>
+                    <p class="small text-muted"><a href="{% url 'accounts:address_list' %}">Manage addresses</a></p>
                     {% else %}
-                    <p class="text-warning">暂无收货地址，<a href="{% url 'accounts:address_add' %}">添加地址</a>后再下单。</p>
+                    <p class="text-warning">No delivery address. <a href="{% url 'accounts:address_add' %}">Add one</a> to continue.</p>
                     {% endif %}
                 </div>
             </div>
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-body p-4">
-                    <label for="note" class="form-label">订单备注（选填）</label>
-                    <textarea name="note" id="note" class="form-control" rows="3" placeholder="如：不要辣、少油等"></textarea>
+                    <label for="note" class="form-label">Order note (optional)</label>
+                    <textarea name="note" id="note" class="form-control" rows="3" placeholder="e.g. No spice, less oil"></textarea>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
                 <div class="card-body p-4">
-                    <h5 class="mb-4">订单内容</h5>
+                    <h5 class="mb-4">Order summary</h5>
                     {% for item in items %}
                     <div class="d-flex justify-content-between mb-2">
                         <span>{{ item.dish.name }} x{{ item.quantity }}</span>
-                        <span>¥{{ item.line_total }}</span>
+                        <span>${{ item.line_total }}</span>
                     </div>
                     {% endfor %}
                     <hr>
-                    <div class="d-flex justify-content-between mb-2"><span>商品小计</span><span>¥{{ subtotal }}</span></div>
-                    <div class="d-flex justify-content-between mb-2"><span>配送费</span><span>¥{{ delivery_fee }}</span></div>
+                    <div class="d-flex justify-content-between mb-2"><span>Subtotal</span><span>${{ subtotal }}</span></div>
+                    <div class="d-flex justify-content-between mb-2"><span>Delivery</span><span>${{ delivery_fee }}</span></div>
                     <hr>
                     <div class="d-flex justify-content-between mb-4">
-                        <span class="h5">合计</span>
-                        <span class="h5 text-warning">¥{{ total }}</span>
+                        <span class="h5">Total</span>
+                        <span class="h5 text-warning">${{ total }}</span>
                     </div>
                     {% if addresses %}
-                    <button type="submit" class="btn btn-primary w-100 py-2">提交订单</button>
+                    <button type="submit" class="btn btn-primary w-100 py-2">Place order</button>
                     {% else %}
-                    <button type="button" class="btn btn-secondary w-100 py-2" disabled>请先添加收货地址</button>
+                    <button type="button" class="btn btn-secondary w-100 py-2" disabled>Add a delivery address first</button>
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </form>
-<p class="mt-3"><a href="{% url 'carts:cart' %}">&larr; 返回购物车</a></p>
+<p class="mt-3"><a href="{% url 'carts:cart' %}">&larr; Back to cart</a></p>
 {% endblock %}

@@ -1,10 +1,10 @@
 """
-用户注册、登录、登出、个人资料与地址管理。
-登录后才能访问个人中心与地址管理。
+User registration, login, logout, profile and address management.
+Profile and addresses require login.
 """
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, get_user_model
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods, require_POST
@@ -17,7 +17,7 @@ User = get_user_model()
 
 
 def register(request):
-    """用户注册：邮箱/用户名，密码加密存储"""
+    """User registration: email/username, password stored hashed."""
     if request.user.is_authenticated:
         return redirect('accounts:profile')
     if request.method == 'POST':
@@ -25,17 +25,17 @@ def register(request):
         if form.is_valid():
             user = form.save()
             UserProfile.objects.get_or_create(user=user)
-            messages.success(request, '注册成功，请登录。')
+            messages.success(request, 'Registration successful. Please log in.')
             return redirect('accounts:login')
         else:
-            messages.error(request, '请修正表单中的错误。')
+            messages.error(request, 'Please correct the errors in the form.')
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
 
 class UserLoginView(LoginView):
-    """登录：会话管理由 Django 处理；登录后合并匿名购物车"""
+    """Login; session handled by Django; merge anonymous cart after login."""
     form_class = UserLoginForm
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
@@ -53,16 +53,16 @@ class UserLoginView(LoginView):
 @require_http_methods(['GET', 'POST'])
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    """查看个人资料；POST 时编辑（昵称、手机、头像）"""
+    """View profile; POST to edit (nickname, phone, avatar)."""
     profile_obj, _ = UserProfile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, request.FILES, instance=profile_obj)
         if form.is_valid():
             form.save()
-            messages.success(request, '资料已更新。')
+            messages.success(request, 'Profile updated.')
             return redirect('accounts:profile')
         else:
-            messages.error(request, '请修正表单中的错误。')
+            messages.error(request, 'Please correct the errors in the form.')
     else:
         form = ProfileEditForm(instance=profile_obj)
     return render(request, 'accounts/profile.html', {
@@ -73,7 +73,7 @@ def profile(request):
 
 @login_required(login_url='/accounts/login/')
 def address_list(request):
-    """地址列表：展示、添加、编辑、删除、设默认"""
+    """Address list: view, add, edit, delete, set default."""
     addresses = request.user.addresses.all()
     form = AddressForm()
     return render(request, 'accounts/addresses.html', {
@@ -85,57 +85,57 @@ def address_list(request):
 @require_http_methods(['GET', 'POST'])
 @login_required(login_url='/accounts/login/')
 def address_add(request):
-    """添加收货地址"""
+    """Add delivery address."""
     if request.method == 'POST':
         form = AddressForm(request.POST)
         if form.is_valid():
             addr = form.save(commit=False)
             addr.user = request.user
             addr.save()
-            messages.success(request, '地址已添加。')
+            messages.success(request, 'Address added.')
             return redirect('accounts:address_list')
         else:
-            messages.error(request, '请修正表单中的错误。')
-            return render(request, 'accounts/address_form.html', {'form': form, 'title': '添加地址'})
+            messages.error(request, 'Please correct the errors in the form.')
+            return render(request, 'accounts/address_form.html', {'form': form, 'title': 'Add address'})
     form = AddressForm()
-    return render(request, 'accounts/address_form.html', {'form': form, 'title': '添加地址'})
+    return render(request, 'accounts/address_form.html', {'form': form, 'title': 'Add address'})
 
 
 @require_http_methods(['GET', 'POST'])
 @login_required(login_url='/accounts/login/')
 def address_edit(request, pk):
-    """编辑地址"""
+    """Edit address."""
     addr = get_object_or_404(UserAddress, pk=pk, user=request.user)
     if request.method == 'POST':
         form = AddressForm(request.POST, instance=addr)
         if form.is_valid():
             form.save()
-            messages.success(request, '地址已更新。')
+            messages.success(request, 'Address updated.')
             return redirect('accounts:address_list')
         else:
-            messages.error(request, '请修正表单中的错误。')
+            messages.error(request, 'Please correct the errors in the form.')
     else:
         form = AddressForm(instance=addr)
-    return render(request, 'accounts/address_form.html', {'form': form, 'address': addr, 'title': '编辑地址'})
+    return render(request, 'accounts/address_form.html', {'form': form, 'address': addr, 'title': 'Edit address'})
 
 
 @require_POST
 @login_required(login_url='/accounts/login/')
 def address_delete(request, pk):
-    """删除地址"""
+    """Delete address."""
     addr = get_object_or_404(UserAddress, pk=pk, user=request.user)
     addr.delete()
-    messages.success(request, '地址已删除。')
+    messages.success(request, 'Address deleted.')
     return redirect('accounts:address_list')
 
 
 @require_POST
 @login_required(login_url='/accounts/login/')
 def address_set_default(request, pk):
-    """设置默认地址"""
+    """Set default address."""
     addr = get_object_or_404(UserAddress, pk=pk, user=request.user)
     UserAddress.objects.filter(user=request.user).update(is_default=False)
     addr.is_default = True
     addr.save()
-    messages.success(request, '已设为默认地址。')
+    messages.success(request, 'Set as default address.')
     return redirect('accounts:address_list')

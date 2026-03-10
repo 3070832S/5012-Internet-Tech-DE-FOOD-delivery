@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Food Delivery - 首页测试{% endblock %}
+{% block title %}Food Delivery - Home test{% endblock %}
 
 {% block content %}
-<!-- 顶部横幅 -->
+<!-- Hero banner -->
 <div class="bg-warning bg-opacity-10 p-5 rounded-3 mb-5">
     <div class="container py-4">
-        <h1 class="display-4 fw-bold">饿了么？🍽️</h1>
-        <p class="lead">今天想吃点什么？来看看附近的美食吧</p>
-        <a href="/restaurants/" class="btn btn-primary btn-lg mt-3">立即点餐</a>
+        <h1 class="display-4 fw-bold">Hungry? 🍽️</h1>
+        <p class="lead">What would you like to eat today? Check out restaurants near you.</p>
+        <a href="/restaurants/" class="btn btn-primary btn-lg mt-3">Order now</a>
     </div>
 </div>
 
-<!-- 三大特色板块 -->
+<!-- Three feature blocks -->
 <div class="row g-4 mb-5">
     <div class="col-md-4">
         <div class="card h-100 border-0 shadow-sm">
@@ -20,9 +20,9 @@
                 <div class="display-1 mb-3">
                     <i class="bi bi-shop text-warning"></i>
                 </div>
-                <h3 class="h4 mb-3">精选餐厅</h3>
-                <p class="text-muted">周边百家餐厅，中餐西餐日料韩餐，总有一家合你口味</p>
-                <a href="/restaurants/" class="btn btn-outline-primary mt-2">查看餐厅</a>
+                <h3 class="h4 mb-3">Restaurants</h3>
+                <p class="text-muted">Browse nearby restaurants — something for every taste.</p>
+                <a href="/restaurants/" class="btn btn-outline-primary mt-2">View restaurants</a>
             </div>
         </div>
     </div>
@@ -33,9 +33,9 @@
                 <div class="display-1 mb-3">
                     <i class="bi bi-cart text-warning"></i>
                 </div>
-                <h3 class="h4 mb-3">极速下单</h3>
-                <p class="text-muted">一键加入购物车，多种支付方式，下单即送</p>
-                <a href="/cart/" class="btn btn-outline-primary mt-2">去购物车</a>
+                <h3 class="h4 mb-3">Quick order</h3>
+                <p class="text-muted">Add to cart, choose payment, and get it delivered.</p>
+                <a href="/cart/" class="btn btn-outline-primary mt-2">Go to cart</a>
             </div>
         </div>
     </div>
@@ -46,9 +46,9 @@
                 <div class="display-1 mb-3">
                     <i class="bi bi-box text-warning"></i>
                 </div>
-                <h3 class="h4 mb-3">实时跟踪</h3>
-                <p class="text-muted">订单状态实时更新，从接单到送达全程掌握</p>
-                <a href="/orders/" class="btn btn-outline-primary mt-2">查看订单</a>
+                <h3 class="h4 mb-3">Track order</h3>
+                <p class="text-muted">Real-time order status from kitchen to your door.</p>
+                <a href="/orders/" class="btn btn-outline-primary mt-2">View orders</a>
             </div>
         </div>
     </div>

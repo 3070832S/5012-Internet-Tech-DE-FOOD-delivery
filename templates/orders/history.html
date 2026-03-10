@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}订单列表 - Food Delivery{% endblock %}
+{% block title %}My orders - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2">我的订单</h1>
-    <a href="{% url 'restaurants:index' %}" class="btn btn-outline-primary"><i class="bi bi-shop"></i> 继续下单</a>
+    <h1 class="h2">My orders</h1>
+    <a href="{% url 'restaurants:index' %}" class="btn btn-outline-primary"><i class="bi bi-shop"></i> Order again</a>
 </div>
 
 {% if orders %}
@@ -16,8 +16,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
-                        <h5 class="mb-1">订单 {{ order.order_no }}</h5>
-                        <p class="text-muted small mb-0">{{ order.created_at|date:"Y-m-d H:i" }} · {{ order.items.count }} 件商品</p>
+                        <h5 class="mb-1">Order {{ order.order_no }}</h5>
+                        <p class="text-muted small mb-0">{{ order.created_at|date:"Y-m-d H:i" }} · {{ order.items.count }} items</p>
                     </div>
                     <span class="badge
                         {% if order.status == 'pending' %}bg-secondary
@@ -27,8 +27,8 @@
                         {% else %}bg-dark{% endif %}">{{ order.get_status_display }}</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-warning">¥{{ order.total }}</span>
-                    <a href="{% url 'orders:detail' order.pk %}" class="btn btn-sm btn-outline-primary">查看详情</a>
+                    <span class="fw-bold text-warning">${{ order.total }}</span>
+                    <a href="{% url 'orders:detail' order.pk %}" class="btn btn-sm btn-outline-primary">View details</a>
                 </div>
             </div>
         </div>
@@ -36,6 +36,6 @@
     </div>
 </div>
 {% else %}
-<p class="text-muted">暂无订单，<a href="{% url 'restaurants:index' %}">去下单</a>。</p>
+<p class="text-muted">No orders yet. <a href="{% url 'restaurants:index' %}">Place an order</a>.</p>
 {% endif %}
 {% endblock %}

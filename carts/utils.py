@@ -1,9 +1,9 @@
-"""购物车获取与登录后合并"""
+"""Cart get/create and merge after login."""
 from .models import Cart, CartItem
 
 
 def get_or_create_cart(request):
-    """按当前用户或 session 获取/创建购物车"""
+    """Get or create cart for current user or session."""
     if request.user.is_authenticated:
         cart, _ = Cart.objects.get_or_create(
             user=request.user,
@@ -20,7 +20,7 @@ def get_or_create_cart(request):
 
 
 def merge_cart_after_login(request):
-    """登录后将 session 购物车合并到用户购物车"""
+    """Merge session cart into user cart after login."""
     if not request.user.is_authenticated or not request.session.session_key:
         return
     session_cart = Cart.objects.filter(

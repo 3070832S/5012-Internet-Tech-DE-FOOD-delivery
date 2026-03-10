@@ -4,4 +4,4 @@ from django.apps import AppConfig
 class MerchantsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'merchants'
-    verbose_name = '商家管理'
+    verbose_name = 'Merchant management'

@@ -1,4 +1,4 @@
-"""下单流程与订单管理"""
+"""Checkout flow and order management."""
 import random
 from decimal import Decimal
 from django.shortcuts import render, redirect, get_object_or_404
@@ -14,7 +14,7 @@ from .models import Order, OrderItem
 @require_GET
 @login_required(login_url='/accounts/login/')
 def order_list(request):
-    """订单列表"""
+    """Order list."""
     orders = request.user.orders.all()
     return render(request, 'orders/history.html', {'orders': orders})
 
@@ -22,7 +22,7 @@ def order_list(request):
 @require_GET
 @login_required(login_url='/accounts/login/')
 def order_detail(request, pk):
-    """订单详情"""
+    """Order detail."""
     order = get_object_or_404(Order, pk=pk, user=request.user)
     return render(request, 'orders/detail.html', {'order': order})
 
@@ -34,11 +34,11 @@ def _generate_order_no():
 @require_GET
 @login_required(login_url='/accounts/login/')
 def checkout(request):
-    """结账页：确认购物车、选择地址、填写备注、显示总价"""
+    """Checkout: confirm cart, select address, note, show total."""
     cart = get_or_create_cart(request)
     items = list(cart.items.select_related('dish', 'dish__restaurant').all())
     if not items:
-        messages.warning(request, '购物车为空，请先添加菜品。')
+        messages.warning(request, 'Your cart is empty. Add items first.')
         return redirect('carts:cart')
     addresses = request.user.addresses.all()
     subtotal = cart.subtotal
@@ -57,16 +57,16 @@ def checkout(request):
 @require_POST
 @login_required(login_url='/accounts/login/')
 def place_order(request):
-    """提交订单：地址、备注、计算总价并创建订单"""
+    """Place order: address, note, compute total and create order."""
     cart = get_or_create_cart(request)
     items = list(cart.items.select_related('dish', 'dish__restaurant').all())
     if not items:
-        messages.warning(request, '购物车为空。')
+        messages.warning(request, 'Your cart is empty.')
         return redirect('carts:cart')
 
     address_id = request.POST.get('address_id')
     if not address_id:
-        messages.error(request, '请选择收货地址。')
+        messages.error(request, 'Please select a delivery address.')
         return redirect('orders:checkout')
     address = get_object_or_404(UserAddress, pk=address_id, user=request.user)
 
@@ -98,19 +98,19 @@ def place_order(request):
             unit_price=cart_item.unit_price,
         )
     cart.items.all().delete()
-    messages.success(request, f'订单 {order_no} 已提交。')
+    messages.success(request, f'Order {order_no} placed.')
     return redirect('orders:detail', pk=order.pk)
 
 
 @require_POST
 @login_required(login_url='/accounts/login/')
 def cancel_order(request, pk):
-    """取消订单（仅待处理时可取消）"""
+    """Cancel order (only when pending)."""
     order = get_object_or_404(Order, pk=pk, user=request.user)
     if not order.can_cancel():
-        messages.error(request, '当前状态不可取消。')
+        messages.error(request, 'This order cannot be cancelled.')
         return redirect('orders:detail', pk=pk)
     order.status = Order.STATUS_CANCELLED
     order.save(update_fields=['status', 'updated_at'])
-    messages.success(request, '订单已取消。')
+    messages.success(request, 'Order cancelled.')
     return redirect('orders:detail', pk=pk)

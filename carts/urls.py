@@ -1,4 +1,4 @@
-"""carts 应用 URL 配置（购物车 M3）"""
+"""Carts app URL config (shopping cart M3)."""
 from django.urls import path
 from . import views
 

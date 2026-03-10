@@ -1,4 +1,4 @@
-"""accounts 应用 URL 配置（用户认证 M1）"""
+"""Accounts app URL config (user auth M1)."""
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
