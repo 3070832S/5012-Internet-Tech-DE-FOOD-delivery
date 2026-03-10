@@ -1,11 +1,11 @@
-"""购物车模型：支持登录用户持久化与匿名用户 session"""
+"""Cart model: persistence for logged-in users, session for anonymous."""
 from decimal import Decimal
 from django.db import models
 from django.conf import settings
 
 
 class Cart(models.Model):
-    """购物车：user 与 session_key 二选一"""
+    """Cart: either user or session_key."""
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -18,7 +18,7 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = '购物车'
+        verbose_name = 'Cart'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -37,18 +37,18 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    """购物车项：菜品、数量、加入时单价快照"""
+    """Cart item: dish, quantity, unit price at add time."""
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     dish = models.ForeignKey(
         'restaurants.Dish',
         on_delete=models.CASCADE,
         related_name='cart_items'
     )
-    quantity = models.PositiveIntegerField('数量', default=1)
-    unit_price = models.DecimalField('单价', max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField('Quantity', default=1)
+    unit_price = models.DecimalField('Unit price', max_digits=10, decimal_places=2)
 
     class Meta:
-        verbose_name = '购物车项'
+        verbose_name = 'Cart item'
         verbose_name_plural = verbose_name
         unique_together = [('cart', 'dish')]
 

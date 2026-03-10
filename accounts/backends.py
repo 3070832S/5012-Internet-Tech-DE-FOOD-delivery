@@ -1,4 +1,4 @@
-"""支持使用邮箱或用户名登录的认证后端"""
+"""Authentication backend supporting login with email or username."""
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 
@@ -16,7 +16,7 @@ class EmailOrUsernameBackend(ModelBackend):
         try:
             user = User.objects.get(**kwargs)
         except User.DoesNotExist:
-            User().set_password(password)  # 防止时序攻击
+            User().set_password(password)  # Prevent timing attack
             return None
         if user.check_password(password) and self.user_can_authenticate(user):
             return user

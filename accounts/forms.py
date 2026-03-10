@@ -1,5 +1,5 @@
 """
-用户注册、登录、资料与地址表单，含基本验证与错误提示。
+User registration, login, profile and address forms with validation and error messages.
 """
 from django import forms
 from django.contrib.auth.models import User
@@ -8,25 +8,25 @@ from .models import UserProfile, UserAddress
 
 
 class UserRegistrationForm(UserCreationForm):
-    """邮箱/用户名注册，密码由父类处理（加密存储）"""
+    """Email/username registration; password is hashed by parent class."""
     email = forms.EmailField(
-        label='邮箱',
+        label='Email',
         required=True,
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'your@email.com'})
     )
     username = forms.CharField(
-        label='用户名',
+        label='Username',
         max_length=150,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '用户名'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'})
     )
     password1 = forms.CharField(
-        label='密码',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '密码'}),
-        help_text='至少 8 位，不能全为数字'
+        label='Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
+        help_text='At least 8 characters, not entirely numeric'
     )
     password2 = forms.CharField(
-        label='确认密码',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '再次输入密码'})
+        label='Confirm password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm password'})
     )
 
     class Meta:
@@ -42,71 +42,71 @@ class UserRegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if email and User.objects.filter(email=email).exists():
-            raise forms.ValidationError('该邮箱已被注册。')
+            raise forms.ValidationError('This email is already registered.')
         return email
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if username and User.objects.filter(username=username).exists():
-            raise forms.ValidationError('该用户名已被使用。')
+            raise forms.ValidationError('This username is already taken.')
         return username
 
 
 class UserLoginForm(AuthenticationForm):
-    """登录表单"""
+    """Login form."""
     username = forms.CharField(
-        label='用户名或邮箱',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '用户名或邮箱'})
+        label='Username or email',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username or email'})
     )
     password = forms.CharField(
-        label='密码',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '密码'})
+        label='Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
     )
 
 
 class ProfileEditForm(forms.ModelForm):
-    """编辑个人资料：昵称、手机、头像（可选）"""
+    """Edit profile: nickname, phone, avatar (optional)."""
     class Meta:
         model = UserProfile
         fields = ('nickname', 'phone', 'avatar')
         widgets = {
-            'nickname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '昵称'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '手机号'}),
-            'avatar': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*'}),
+            'nickname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nickname'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
+           
         }
-        labels = {'nickname': '昵称', 'phone': '手机号', 'avatar': '头像（可选）'}
+        labels = {'nickname': 'Nickname', 'phone': 'Phone', 'avatar': 'Avatar (optional)'}
 
 
 class AddressForm(forms.ModelForm):
-    """添加/编辑收货地址"""
+    """Add/edit delivery address."""
     class Meta:
         model = UserAddress
         fields = ('recipient_name', 'phone', 'address_line', 'city', 'postcode', 'is_default')
         widgets = {
-            'recipient_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '收货人姓名'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '手机号'}),
-            'address_line': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '街道、门牌号等'}),
-            'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '城市'}),
-            'postcode': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '邮编（可选）'}),
+            'recipient_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Recipient name'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
+            'address_line': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Street, building, etc.'}),
+            'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
+            'postcode': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Postcode (optional)'}),
             'is_default': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
         labels = {
-            'recipient_name': '收货人',
-            'phone': '手机号',
-            'address_line': '详细地址',
-            'city': '城市',
-            'postcode': '邮编',
-            'is_default': '设为默认地址',
+            'recipient_name': 'Recipient',
+            'phone': 'Phone',
+            'address_line': 'Address',
+            'city': 'City',
+            'postcode': 'Postcode',
+            'is_default': 'Set as default address',
         }
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone', '').strip()
         if not phone:
-            raise forms.ValidationError('请输入手机号。')
+            raise forms.ValidationError('Please enter a phone number.')
         return phone
 
     def clean_address_line(self):
         value = self.cleaned_data.get('address_line', '').strip()
         if not value:
-            raise forms.ValidationError('请输入详细地址。')
+            raise forms.ValidationError('Please enter the address.')
         return value

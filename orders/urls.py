@@ -1,4 +1,4 @@
-"""orders 应用 URL 配置（订单 M4, M5）"""
+"""Orders app URL config (orders M4, M5)."""
 from django.urls import path
 from . import views
 

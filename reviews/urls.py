@@ -1,4 +1,4 @@
-"""reviews 应用 URL 配置（评价与收藏 S1, S2, C1）"""
+"""Reviews app URL config (reviews and favorites S1, S2, C1)."""
 from django.urls import path
 from django.views.generic import TemplateView
 

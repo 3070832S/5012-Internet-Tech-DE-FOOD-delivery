@@ -31,17 +31,17 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{% url 'restaurants:index' %}">
-                            <i class="bi bi-shop"></i> 餐厅
+                            <i class="bi bi-shop"></i> Restaurants
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{% url 'carts:cart' %}">
-                            <i class="bi bi-cart"></i> 购物车
+                            <i class="bi bi-cart"></i> Cart
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{% url 'orders:history' %}">
-                            <i class="bi bi-box"></i> 订单
+                            <i class="bi bi-box"></i> Orders
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -50,13 +50,13 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">个人中心</a></li>
-                            <li><a class="dropdown-item" href="{% url 'accounts:address_list' %}">收货地址</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:address_list' %}">Addresses</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">退出</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
                             {% else %}
-                            <li><a class="dropdown-item" href="{% url 'accounts:login' %}">登录</a></li>
-                            <li><a class="dropdown-item" href="{% url 'accounts:register' %}">注册</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:register' %}">Register</a></li>
                             {% endif %}
                         </ul>
                     </li>
@@ -94,9 +94,9 @@
                 <div class="col-md-4 mb-3">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'restaurants:index' %}" class="text-decoration-none text-muted">餐厅</a></li>
-                        <li><a href="{% url 'orders:history' %}" class="text-decoration-none text-muted">我的订单</a></li>
-                        <li><a href="{% url 'accounts:profile' %}" class="text-decoration-none text-muted">个人中心</a></li>
+                        <li><a href="{% url 'restaurants:index' %}" class="text-decoration-none text-muted">Restaurants</a></li>
+                        <li><a href="{% url 'orders:history' %}" class="text-decoration-none text-muted">My Orders</a></li>
+                        <li><a href="{% url 'accounts:profile' %}" class="text-decoration-none text-muted">Profile</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">

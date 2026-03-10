@@ -1,6 +1,6 @@
 """
-URL configuration for food_delivery_project project.
-后端路由按应用模块划分，详见 docs/ARCHITECTURE.md
+URL configuration for food_delivery_project.
+Routes are split by app; see docs/ARCHITECTURE.md.
 """
 from django.conf import settings
 from django.conf.urls.static import static

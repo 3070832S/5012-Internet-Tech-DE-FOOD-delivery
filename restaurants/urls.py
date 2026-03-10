@@ -1,4 +1,4 @@
-"""restaurants 应用 URL 配置（餐厅与菜单 M2）"""
+"""Restaurants app URL config (restaurant and menu M2)."""
 from django.urls import path
 from . import views
 

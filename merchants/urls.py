@@ -1,4 +1,4 @@
-"""merchants 应用 URL 配置（商家管理 C2）"""
+"""Merchants app URL config (merchant management C2)."""
 from django.urls import path
 from django.views.generic import TemplateView
 

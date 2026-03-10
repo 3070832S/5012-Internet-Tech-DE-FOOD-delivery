@@ -1,30 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}个人资料 - Food Delivery{% endblock %}
+{% block title %}Profile - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-lg-8">
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4">
-                <h2 class="h4 mb-4">个人资料</h2>
+                <h2 class="h4 mb-4">Profile</h2>
                 <div class="d-flex align-items-start gap-4 mb-4">
                     {% if profile.avatar %}
-                    <img src="{{ profile.avatar.url }}" alt="头像" class="rounded-circle" style="width:80px;height:80px;object-fit:cover">
+                    <img src="{{ profile.avatar.url }}" alt="Avatar" class="rounded-circle" style="width:80px;height:80px;object-fit:cover">
                     {% else %}
                     <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white" style="width:80px;height:80px">
                         <i class="bi bi-person-fill fs-2"></i>
                     </div>
                     {% endif %}
                     <div class="flex-grow-1">
-                        <p class="mb-1"><strong>用户名</strong> {{ user.username }}</p>
-                        <p class="mb-1"><strong>邮箱</strong> {{ user.email|default:"未设置" }}</p>
-                        <p class="mb-1"><strong>昵称</strong> {{ profile.nickname|default:"未设置" }}</p>
-                        <p class="mb-0"><strong>手机</strong> {{ profile.phone|default:"未设置" }}</p>
+                        <p class="mb-1"><strong>Username</strong> {{ user.username }}</p>
+                        <p class="mb-1"><strong>Email</strong> {{ user.email|default:"Not set" }}</p>
+                        <p class="mb-1"><strong>Nickname</strong> {{ profile.nickname|default:"Not set" }}</p>
+                        <p class="mb-0"><strong>Phone</strong> {{ profile.phone|default:"Not set" }}</p>
                     </div>
                 </div>
                 <hr>
-                <h3 class="h6 mb-3">编辑资料</h3>
+                <h3 class="h6 mb-3">Edit profile</h3>
                 {% if form.non_field_errors %}
                 <div class="alert alert-danger">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
                 {% endif %}
@@ -37,7 +37,7 @@
                         {% if field.errors %}<div class="invalid-feedback d-block">{% for e in field.errors %}{{ e }}{% endfor %}</div>{% endif %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-warning">保存</button>
+                    <button type="submit" class="btn btn-warning">Save</button>
                 </form>
             </div>
         </div>
@@ -45,9 +45,9 @@
     <div class="col-lg-4">
         <div class="card shadow-sm border-0">
             <div class="card-body">
-                <h3 class="h6 mb-3">快捷入口</h3>
+                <h3 class="h6 mb-3">Quick links</h3>
                 <a href="{% url 'accounts:address_list' %}" class="btn btn-outline-secondary w-100 mb-2">
-                    <i class="bi bi-geo-alt"></i> 收货地址管理
+                    <i class="bi bi-geo-alt"></i> Delivery addresses
                 </a>
             </div>
         </div>

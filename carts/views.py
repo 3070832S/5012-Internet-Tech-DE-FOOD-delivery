@@ -1,4 +1,4 @@
-"""购物车：查看、加购、改数量、删除、清空"""
+"""Cart: view, add, update quantity, remove, clear."""
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_GET, require_POST
 from django.contrib import messages
@@ -9,7 +9,7 @@ from .utils import get_or_create_cart
 
 @require_GET
 def cart_detail(request):
-    """购物车页面：展示项、小计、配送费、总价"""
+    """Cart page: items, subtotal, delivery fee, total."""
     cart = get_or_create_cart(request)
     from decimal import Decimal
     items = list(cart.items.select_related('dish', 'dish__restaurant').all())
@@ -27,7 +27,7 @@ def cart_detail(request):
 
 @require_POST
 def add_to_cart(request, dish_id):
-    """添加菜品到购物车（数量通过 POST 传 quantity，默认 1）"""
+    """Add dish to cart (quantity via POST, default 1)."""
     dish = get_object_or_404(Dish, pk=dish_id, is_available=True)
     quantity = max(1, int(request.POST.get('quantity', 1)))
     cart = get_or_create_cart(request)
@@ -39,41 +39,41 @@ def add_to_cart(request, dish_id):
     if not created:
         item.quantity += quantity
         item.save()
-    messages.success(request, f'已添加 {dish.name} x{quantity}')
+    messages.success(request, f'Added {dish.name} x{quantity}')
     next_url = request.POST.get('next') or request.GET.get('next') or request.META.get('HTTP_REFERER') or '/restaurants/'
     return redirect(next_url)
 
 
 @require_POST
 def update_quantity(request, item_id):
-    """修改购物车项数量"""
+    """Update cart item quantity."""
     cart = get_or_create_cart(request)
     item = get_object_or_404(CartItem, pk=item_id, cart=cart)
     quantity = int(request.POST.get('quantity', item.quantity))
     if quantity < 1:
         item.delete()
-        messages.success(request, '已从购物车移除')
+        messages.success(request, 'Removed from cart')
     else:
         item.quantity = quantity
         item.save()
-        messages.success(request, '数量已更新')
+        messages.success(request, 'Quantity updated')
     return redirect('carts:cart')
 
 
 @require_POST
 def remove_item(request, item_id):
-    """从购物车移除一项"""
+    """Remove one item from cart."""
     cart = get_or_create_cart(request)
     item = get_object_or_404(CartItem, pk=item_id, cart=cart)
     item.delete()
-    messages.success(request, '已移除')
+    messages.success(request, 'Removed')
     return redirect('carts:cart')
 
 
 @require_POST
 def clear_cart(request):
-    """清空购物车"""
+    """Clear cart."""
     cart = get_or_create_cart(request)
     cart.items.all().delete()
-    messages.success(request, '购物车已清空')
+    messages.success(request, 'Cart cleared')
     return redirect('carts:cart')
