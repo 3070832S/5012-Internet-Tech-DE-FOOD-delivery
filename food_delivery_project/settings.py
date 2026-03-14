@@ -3,17 +3,13 @@ Django settings for food_delivery_project project.
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Template directory path
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-# Static files directory path
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-# Media files directory path
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+TEMPLATE_DIR = BASE_DIR / 'templates'
+STATIC_DIR = BASE_DIR / 'static'
+MEDIA_DIR = BASE_DIR / 'media'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-your-secret-key-here'
@@ -21,7 +17,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['devin24.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -56,7 +52,7 @@ ROOT_URLCONF = 'food_delivery_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [str(TEMPLATE_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,11 +68,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'food_delivery_project.wsgi.application'
 
-# Database configuration
+# Database configuration (SQLite)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -102,20 +98,18 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files configuration (your CSS/JS)
+# Static files configuration
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+STATICFILES_DIRS = [str(STATIC_DIR)]
 
-# Media files configuration (user uploaded images)
+# Media files configuration (user uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = str(MEDIA_DIR)
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Auth: 登录跳转与认证后端（支持用户名/邮箱登录）
+# Auth: login redirect and backend (username or email login)
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -123,3 +117,8 @@ AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailOrUsernameBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+STATIC_ROOT = '/home/Devin24/5012-Internet-Tech-DE-FOOD-delivery/staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/Devin24/5012-Internet-Tech-DE-FOOD-delivery/media'
