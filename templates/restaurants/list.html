@@ -1,41 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}餐厅列表 - Food Delivery{% endblock %}
+{% block title %}Restaurants - Food Delivery{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2">附近餐厅</h1>
+    <h1 class="h2">Restaurants near you</h1>
 </div>
 
 <div class="row g-4">
     {% for r in restaurants %}
     <div class="col-md-4 col-sm-6">
         <div class="card h-100">
-            {% if r.image %}
-            <img src="{{ r.image.url }}" class="card-img-top" alt="{{ r.name }}" style="height:200px;object-fit:cover">
-            {% else %}
-            <img src="https://picsum.photos/300/200?random={{ r.id }}" class="card-img-top" alt="{{ r.name }}" style="height:200px;object-fit:cover">
-            {% endif %}
+            <img src="/media/restaurants/{{ r.slug }}.jpg"
+                 class="card-img-top"
+                 alt="{{ r.name }}"
+                 style="height:200px;object-fit:cover">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h5 class="card-title mb-0">{{ r.name }}</h5>
                     <span class="badge bg-warning text-dark">{{ r.rating }} ★</span>
                 </div>
                 <p class="card-text text-muted small mb-2">
-                    <i class="bi bi-clock"></i> {{ r.estimate_minutes_min }}-{{ r.estimate_minutes_max }} 分钟 ·
-                    <i class="bi bi-cash"></i> 起送 ¥{{ r.min_order }}
+                    <i class="bi bi-clock"></i> {{ r.estimate_minutes_min }}-{{ r.estimate_minutes_max }} min ·
+                    <i class="bi bi-cash"></i> Min ${{ r.min_order }}
                 </p>
                 {% if r.tags %}<p class="card-text text-muted small mb-3"><i class="bi bi-tag"></i> {{ r.tags }}</p>{% endif %}
                 <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted"><i class="bi bi-truck"></i> 配送费 ¥{{ r.delivery_fee }}</small>
-                    <a href="{% url 'restaurants:menu' r.slug %}" class="btn btn-primary btn-sm">查看菜单</a>
+                    <small class="text-muted"><i class="bi bi-truck"></i> Delivery ${{ r.delivery_fee }}</small>
+                    <a href="{% url 'restaurants:menu' r.slug %}" class="btn btn-primary btn-sm">View menu</a>
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
     <div class="col-12 text-center py-5 text-muted">
-        <p>暂无餐厅，请稍后再试或联系管理员添加。</p>
+        <p>No restaurants yet. Try again later or contact admin.</p>
     </div>
     {% endfor %}
 </div>

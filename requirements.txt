@@ -1,4 +1,9 @@
+# Food Delivery - Python/Django 后端依赖
+# Python 3.8+ 推荐
+
 Django>=4.2,<5.0
 Pillow>=10.0
-gunicorn>=21.0
-whitenoise>=6.0
+# 生产环境可选:
+# gunicorn>=21.0
+# psycopg2-binary>=2.9  # PostgreSQL
+# python-dotenv>=1.0    # 环境变量
