@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['devin24.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -117,3 +117,8 @@ AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailOrUsernameBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+STATIC_ROOT = '/home/Devin24/5012-Internet-Tech-DE-FOOD-delivery/staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/Devin24/5012-Internet-Tech-DE-FOOD-delivery/media'

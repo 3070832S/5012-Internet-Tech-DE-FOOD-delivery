@@ -17,11 +17,10 @@
     {% for d in dishes %}
     <div class="col-md-6 col-lg-4">
         <div class="card h-100">
-            {% if d.image %}
-            <img src="{{ d.image.url }}" class="card-img-top" alt="{{ d.name }}" style="height:160px;object-fit:cover">
-            {% else %}
-            <img src="https://picsum.photos/300/160?random={{ d.id }}" class="card-img-top" alt="{{ d.name }}" style="height:160px;object-fit:cover">
-            {% endif %}
+            <img src="{{ d.image.url }}"
+                 class="card-img-top"
+                 alt="{{ d.name }}"
+                 style="height:160px;object-fit:cover">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ d.name }}</h5>
                 {% if d.description %}<p class="card-text text-muted small flex-grow-1">{{ d.description }}</p>{% endif %}
